@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foxuma — Live Demo</title>
+<meta name="description" content="Try Foxuma with sample data. Projects, invoices and an AI assistant for shops and small businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="demo.css?v=1">
+</head>
+<body>
+
+<div class="demo-banner">You are in the <strong>Foxuma demo</strong> — every name and number here is sample data. <a href="https://foxuma.com" target="_blank" rel="noopener">Get Foxuma for your business</a></div>
+
+<div class="app">
+  <aside class="sidebar">
+    <a class="logo" href="#">Foxuma</a>
+    <p class="org">Maple Works Studio <span>Demo company</span></p>
+    <nav class="menu" aria-label="Demo">
+      <button class="menu-item active" data-view="dashboard">Dashboard</button>
+      <button class="menu-item" data-view="projects">Projects</button>
+      <button class="menu-item" data-view="invoices">Invoices</button>
+      <button class="menu-item" data-view="fox">Fox — AI assistant</button>
+    </nav>
+    <a class="back" href="../">← Back to portfolio</a>
+  </aside>
+
+  <main class="main">
+    <!-- Dashboard -->
+    <section class="view active" id="view-dashboard">
+      <h1>Good morning, Alex</h1>
+      <p class="sub">Tuesday at Maple Works Studio — here is your shop at a glance.</p>
+      <div class="kpis">
+        <div class="kpi"><span>Open projects</span><strong>8</strong><em>2 due this week</em></div>
+        <div class="kpi"><span>Outstanding invoices</span><strong>$12,480</strong><em>3 unpaid</em></div>
+        <div class="kpi"><span>Revenue this month</span><strong>$31,260</strong><em>+12% vs last month</em></div>
+        <div class="kpi"><span>New enquiries</span><strong>5</strong><em>1 waiting for a quote</em></div>
+      </div>
+      <div class="panel">
+        <h2>Revenue — last 6 months</h2>
+        <div class="chart" aria-hidden="true">
+          <div class="bar" style="height:42%"><span>Jun</span></div>
+          <div class="bar" style="height:55%"><span>Jul</span></div>
+          <div class="bar" style="height:48%"><span>Aug</span></div>
+          <div class="bar" style="height:68%"><span>Sep</span></div>
+          <div class="bar" style="height:79%"><span>Oct</span></div>
+          <div class="bar" style="height:96%"><span>Nov</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Needs your attention</h2>
+        <ul class="attention">
+          <li><b>Invoice #1042</b> — Riverside Dental, $4,180, due in 2 days</li>
+          <li><b>Quote request</b> — Aurora Bakery, walk-in closet, waiting since yesterday</li>
+          <li><b>Project</b> — Chen Kitchen moves to production on Thursday</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="view" id="view-projects">
+      <h1>Projects</h1>
+      <p class="sub">Click a project to see its detail.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Project</th><th>Client</th><th>Stage</th><th>Value</th><th>Due</th></tr></thead>
+          <tbody id="projectRows"></tbody>
+        </table>
+      </div>
+      <div class="panel detail" id="projectDetail" hidden>
+        <h2 id="detailTitle"></h2>
+        <p id="detailBody"></p>
+        <div class="progress"><i id="detailBar"></i></div>
+        <p class="detail-meta" id="detailMeta"></p>
+      </div>
+    </section>
+
+    <!-- Invoices -->
+    <section class="view" id="view-invoices">
+      <h1>Invoices</h1>
+      <p class="sub">Sample invoices. Paid, sent and overdue at a glance.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Invoice</th><th>Client</th><th>Amount</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>#1044</td><td>Chen Kitchen Reno</td><td>$8,950</td><td><span class="pill paid">Paid</span></td></tr>
+            <tr><td>#1043</td><td>North York Condos</td><td>$3,530</td><td><span class="pill sent">Sent</span></td></tr>
+            <tr><td>#1042</td><td>Riverside Dental</td><td>$4,180</td><td><span class="pill sent">Sent</span></td></tr>
+            <tr><td>#1039</td><td>Aurora Bakery</td><td>$1,275</td><td><span class="pill overdue">Overdue</span></td></tr>
+            <tr><td>#1038</td><td>Patel Family Home</td><td>$6,420</td><td><span class="pill paid">Paid</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel cta-panel">
+        <h2>Like what you see?</h2>
+        <p>Foxuma runs your projects, invoices and follow-ups in one place.</p>
+        <a class="btn" href="https://foxuma.com" target="_blank" rel="noopener">Visit foxuma.com</a>
+      </div>
+    </section>
+
+    <!-- Fox -->
+    <section class="view" id="view-fox">
+      <h1>Fox — your AI assistant</h1>
+      <p class="sub">Ask Fox about the demo business. Try one of the suggestions.</p>
+      <div class="chat" id="chat">
+        <div class="msg fox">Hi, I'm Fox. I can see Maple Works Studio's projects, invoices and schedule. What would you like to know?</div>
+      </div>
+      <div class="chips">
+        <button class="chip" data-q="What is overdue?">What is overdue?</button>
+        <button class="chip" data-q="How is this month going?">How is this month going?</button>
+        <button class="chip" data-q="What is due this week?">What is due this week?</button>
+      </div>
+      <form class="chat-form" id="chatForm">
+        <input id="chatInput" type="text" placeholder="Ask Fox anything about the demo…" autocomplete="off" aria-label="Ask Fox">
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+</div>
+
+<script src="demo.js?v=1"></script>
+</body>
+</html>
