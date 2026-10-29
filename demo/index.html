@@ -11,6 +11,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="demo.css?v=1">
+<link rel="canonical" href="https://marksong0917.github.io/demo/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Foxuma — Live Demo">
+<meta property="og:description" content="Try Foxuma with sample data. Projects, invoices and an AI assistant for shops and small businesses.">
+<meta property="og:url" content="https://marksong0917.github.io/demo/">
+<meta property="og:image" content="https://marksong0917.github.io/og.png">
 </head>
 <body>
 
@@ -18,7 +24,7 @@
 
 <div class="app">
   <aside class="sidebar">
-    <a class="logo" href="#">Foxuma</a>
+    <a class="logo" href="https://foxuma.com">Foxuma</a>
     <p class="org">Maple Works Studio <span>Demo company</span></p>
     <nav class="menu" aria-label="Demo">
       <button class="menu-item active" data-view="dashboard">Dashboard</button>
@@ -63,7 +69,7 @@
 
     <!-- Projects -->
     <section class="view" id="view-projects">
-      <h1>Projects</h1>
+      <h2>Projects</h2>
       <p class="sub">Click a project to see its detail.</p>
       <div class="table-wrap">
         <table>
@@ -81,7 +87,7 @@
 
     <!-- Invoices -->
     <section class="view" id="view-invoices">
-      <h1>Invoices</h1>
+      <h2>Invoices</h2>
       <p class="sub">Sample invoices. Paid, sent and overdue at a glance.</p>
       <div class="table-wrap">
         <table>
@@ -104,7 +110,7 @@
 
     <!-- Fox -->
     <section class="view" id="view-fox">
-      <h1>Fox — your AI assistant</h1>
+      <h2>Fox — your AI assistant</h2>
       <p class="sub">Ask Fox about the demo business. Try one of the suggestions.</p>
       <div class="chat" id="chat">
         <div class="msg fox">Hi, I'm Fox. I can see Maple Works Studio's projects, invoices and schedule. What would you like to know?</div>
@@ -123,5 +129,9 @@
 </div>
 
 <script src="demo.js?v=1"></script>
+<script>
+(function(){var h=new Date().getHours(),g=h<12?'Good morning':(h<18?'Good afternoon':'Good evening'),h1=document.querySelector('.main h1');if(h1)h1.textContent=g+', Alex';
+var M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],now=new Date().getMonth(),sp=document.querySelectorAll('.bar span');sp.forEach(function(s,i){s.textContent=M[(now-(sp.length-1-i)+12)%12];});})();
+</script>
 </body>
 </html>

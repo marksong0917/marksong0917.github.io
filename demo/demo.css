@@ -12,7 +12,7 @@ h1,h2,.logo{font-family:'Sora',sans-serif}
 .logo{font-size:1.5rem;font-weight:800;color:#fff;text-decoration:none;letter-spacing:-.02em}
 .logo::after{content:"";display:block;width:34px;height:4px;border-radius:2px;background:var(--accent);margin-top:6px}
 .org{color:#aeb9d0;font-size:.9rem;margin:10px 0 20px}
-.org span{display:block;color:#72809c;font-size:.78rem}
+.org span{display:block;color:#5b6a87;font-size:.78rem}
 .menu{display:flex;flex-direction:column;gap:6px}
 .menu-item{text-align:left;background:transparent;border:0;color:#c6cede;font:inherit;font-size:.97rem;font-weight:500;padding:11px 14px;border-radius:10px;cursor:pointer}
 .menu-item:hover{background:#16233c;color:#fff}
@@ -77,3 +77,5 @@ tbody tr:hover{background:#fafbfe}
   .kpis{grid-template-columns:1fr 1fr}
   .msg{max-width:92%}
 }
+
+.main h2{font-size:1.8rem;letter-spacing:-.02em;margin:0 0 6px}

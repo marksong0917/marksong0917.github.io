@@ -16,7 +16,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
 a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
 code{font-family:'Cascadia Code',Consolas,'SF Mono',monospace;font-size:.9em;background:#eef2f8;padding:1px 6px;border-radius:6px}
@@ -88,3 +88,5 @@ ul.steps{list-style:disc}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
 }
+
+h1,h2,h3{font-family:'Sora','Inter',sans-serif}

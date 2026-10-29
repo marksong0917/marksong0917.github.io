@@ -45,7 +45,7 @@ a{color:inherit}
 .side-links{display:flex;flex-direction:column;gap:10px;font-size:.92rem}
 .side-links a{color:#ffab7a;text-decoration:none;font-weight:500;word-break:break-all;transition:color .2s ease}
 .side-links a:hover{text-decoration:underline;color:#ffc4a1}
-.side-foot{margin-top:auto;color:#5f6f8f;font-size:.84rem}
+.side-foot{margin-top:auto;color:#7d8fb0;font-size:.84rem}
 
 /* Main */
 .main{padding:24px 32px 8px;min-width:0}
@@ -114,7 +114,7 @@ a{color:inherit}
 .pct{font-size:.8rem;color:var(--muted)}
 .card a{margin-top:12px;color:#ffab7a;font-weight:600;text-decoration:none;font-size:.92rem;transition:color .2s ease}
 .card a:hover{text-decoration:underline;color:#ffc4a1}
-.card .note-none{margin-top:12px;color:#5f6f8f;font-size:.88rem;font-weight:600}
+.card .note-none{margin-top:12px;color:#7d8fb0;font-size:.88rem;font-weight:600}
 
 /* Services */
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
@@ -158,7 +158,7 @@ a{color:inherit}
 .about-text{color:#c6cede;max-width:760px}
 .about-text strong{color:#fff}
 .contact p{color:#c6cede;margin-bottom:16px}
-.foot{color:#5f6f8f;font-size:.88rem;padding:8px 0 26px}
+.foot{color:#7d8fb0;font-size:.88rem;padding:8px 0 26px}
 
 /* Reveal */
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}

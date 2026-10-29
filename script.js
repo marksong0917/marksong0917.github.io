@@ -11,6 +11,7 @@ const projects = [
   { rank: 'Demo', name: 'Trade Estimator', status: 'Live', cls: 'live', pct: 100, desc: 'An instant price-range estimator a shop puts on its own website — the customer gets a number in about a minute, the shop gets the lead.', link: 'estimator/', linkText: 'Try the Trade Estimator' },
   { rank: 'Case study', name: 'Foxuma Case Study', status: 'Live', cls: 'live', pct: 100, desc: 'How one system runs a real cabinet shop day to day — projects, orders, invoicing, payroll hours and inventory in one place.', link: 'case-study/', linkText: 'Read the case study' },
   { rank: 'Guide', name: 'Windows 11 Min-Max Guide', status: 'Published', cls: 'guide', pct: 100, desc: 'My Windows 11 optimization guide, rewritten as a public site: minimal bloat, maximum performance, step by step.', link: 'https://marksong0917.github.io/win11-optimization-guide/', linkText: 'Read the guide' },
+  { rank: 'Guide', name: 'Home Server Guide', status: 'Published', cls: 'guide', pct: 100, desc: 'Turn an old PC into a 24/7 private server — services, per-device accounts, clients and upkeep, step by step.', link: 'home-server-guide/', linkText: 'Read the guide' },
 ];
 const grid = document.getElementById('projectGrid');
 projects.forEach((p, i) => {
