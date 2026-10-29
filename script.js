@@ -5,8 +5,8 @@ const projects = [
   { rank: 'No. 2', name: 'Newood Millwork', status: 'Live', cls: 'live', pct: 100, desc: 'Website for a custom cabinetry and millwork manufacturer in Concord, Ontario — clean, premium, built to bring in project enquiries.', link: 'https://newoodmillwork.com', linkText: 'newoodmillwork.com' },
   { rank: 'No. 3', name: 'York Region Web Studio', status: 'Live', cls: 'live', pct: 100, desc: 'My own studio. Premium websites and systems for local small businesses across York Region — one service, priced by written quote.', link: 'https://yorkregionwebstudio.com', linkText: 'yorkregionwebstudio.com' },
   { rank: 'No. 4', name: 'Havenwest Closets', status: 'Live', cls: 'live', pct: 100, desc: 'Website and brand identity for a custom closets and storage company — fully custom, locally built, high-end brand.', link: 'https://havenwestclosets.com', linkText: 'havenwestclosets.com' },
-  { rank: 'No. 5', name: 'Shadowrocket Servers', status: 'Running 24/7', cls: 'running', pct: 100, desc: 'Self-hosted private network servers I built on my own hardware — per-device access, encrypted connections, automatic recovery, runs unattended.', link: '', note: 'Private infrastructure — details on request' },
-  { rank: 'No. 6', name: 'Mir2 Game Server', status: 'Running 24/7', cls: 'running', pct: 100, desc: 'A self-hosted Legend of Mir 2 (1.76) online game server I built and run — custom configuration, scheduled backups, steady uptime.', link: '', note: 'Private server — details on request' },
+  { rank: 'No. 5', name: 'Shadowrocket Servers', status: 'Running 24/7', cls: 'running', pct: 100, desc: 'Self-hosted private network servers I built on my own hardware — per-device access, encrypted connections, automatic recovery, runs unattended.', link: 'home-server-guide/', linkText: 'Read the Home Server Guide' },
+  { rank: 'No. 6', name: 'Mir2 Game Server', status: 'Running 24/7', cls: 'running', pct: 100, desc: 'A self-hosted Legend of Mir 2 (1.76) online game server I built and run — custom configuration, scheduled backups, steady uptime.', link: 'mir2/', linkText: 'About the server' },
   { rank: 'Demo', name: 'Self-Measure Kit', status: 'Live', cls: 'live', pct: 100, desc: 'Homeowners measure their own kitchen or closet and the shop gets a quote-ready summary. A demo of the add-on I build for shops.', link: 'measure-kit/', linkText: 'Try the Self-Measure Kit' },
   { rank: 'Demo', name: 'Trade Estimator', status: 'Live', cls: 'live', pct: 100, desc: 'An instant price-range estimator a shop puts on its own website — the customer gets a number in about a minute, the shop gets the lead.', link: 'estimator/', linkText: 'Try the Trade Estimator' },
   { rank: 'Case study', name: 'Foxuma Case Study', status: 'Live', cls: 'live', pct: 100, desc: 'How one system runs a real cabinet shop day to day — projects, orders, invoicing, payroll hours and inventory in one place.', link: 'case-study/', linkText: 'Read the case study' },
@@ -29,6 +29,8 @@ projects.forEach((p, i) => {
 
 // Build log — recent ships
 const log = [
+  ['Oct 29', 'Every project linked — Mir2 story page published, Shadowrocket card links its guide'],
+  ['Oct 29', 'How I work — a short panel on how I build and run things'],
   ['Oct 28', 'Foxuma case study — one system runs this shop, published'],
   ['Oct 28', 'Trade Estimator demo — instant price range, then the lead'],
   ['Oct 28', 'Portfolio v2 — dashboard redesign'],
