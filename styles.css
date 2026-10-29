@@ -171,13 +171,6 @@ a{color:inherit}
 .stack-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px 32px}
 .stack-cols h4{color:#ffab7a;font-size:.95rem;margin-bottom:4px}
 .stack-cols p{color:#c6cede;font-size:.96rem}
-/* Build log — vertical timeline: thin rail, dot per entry, mono date chip */
-.log{list-style:none;position:relative;display:grid}
-.log::before{content:"";position:absolute;left:6px;top:14px;bottom:14px;width:2px;border-radius:2px;background:linear-gradient(180deg,rgba(232,93,31,.6),var(--line) 32%,var(--line))}
-.log li{position:relative;display:flex;gap:16px;padding:11px 0 11px 30px;align-items:baseline}
-.log .tl-dot{position:absolute;left:2px;top:16px;width:10px;height:10px;border-radius:50%;background:var(--panel);border:2px solid var(--accent2);flex:none}
-.log time{font-family:'JetBrains Mono',monospace;color:#7fe0ab;font-size:.8rem;white-space:nowrap;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
-.log li>span:last-child{color:#c6cede;font-size:.96rem}
 .about-text{color:#c6cede;max-width:760px}
 .about-text strong{color:#fff}
 .contact p{color:#c6cede;margin-bottom:16px}

@@ -27,29 +27,6 @@ projects.forEach((p, i) => {
   grid.appendChild(el);
 });
 
-// Build log — recent ships
-const log = [
-  ['Oct 29', 'Rankings reshuffled — self-hosted servers move up to No. 2 and No. 3'],
-  ['Oct 29', 'Every project linked — Mir2 story page published, Shadowrocket card links its guide'],
-  ['Oct 29', 'How I work — a short panel on how I build and run things'],
-  ['Oct 28', 'Foxuma case study — one system runs this shop, published'],
-  ['Oct 28', 'Trade Estimator demo — instant price range, then the lead'],
-  ['Oct 28', 'Portfolio v2 — dashboard redesign'],
-  ['Oct 28', 'YRWS Template Pack — 3 premium templates (millwork, closets, trades), published'],
-  ['Oct 28', 'Self-Measure Kit demo — homeowners measure, shops get a quote-ready summary'],
-  ['Oct 28', 'Home Server Guide — turn an old PC into a 24/7 private server, published'],
-  ['Oct 28', 'Foxuma demo — interactive demo with sample data, shipped'],
-  ['Oct 28', 'Windows 11 Min-Max Guide — published on GitHub Pages'],
-  ['Oct 28', 'This portfolio — rebuilt as a live dashboard, launched'],
-  ['Oct 28', 'Foxuma — new homepage and public registration live at foxuma.com'],
-];
-const ul = document.getElementById('buildLog');
-log.forEach(([t, s]) => {
-  const li = document.createElement('li');
-  li.innerHTML = `<span class="tl-dot" aria-hidden="true"></span><time>${t}</time><span>${s}</span>`;
-  ul.appendChild(li);
-});
-
 // Reveal on scroll
 const items = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window) {
@@ -88,7 +65,6 @@ const spyTargets = [
   ['stack', document.getElementById('stack')],
   ['guides', document.getElementById('guides')],
   ['faq', document.getElementById('faq')],
-  ['log', document.getElementById('log')],
   ['about', document.getElementById('about')],
   ['contact', document.getElementById('contact')],
 ].filter(([, el]) => el);
