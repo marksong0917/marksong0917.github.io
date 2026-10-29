@@ -33,6 +33,10 @@ code{font-family:'Cascadia Code',Consolas,'SF Mono',monospace;font-size:.9em;bac
 .side-nav a:hover{background:rgba(255,255,255,.08);color:#fff}
 .side-nav a.active{background:var(--accent);color:#fff}
 .side-foot{margin-top:34px;font-size:.82rem;color:#7f96b5;line-height:1.6}
+.lang-switch{margin-top:26px;font-size:.9rem;color:#7f96b5}
+.lang-switch a{color:#c9daf2;text-decoration:none;font-weight:600}
+.lang-switch a:hover{color:#fff}
+.lang-switch a[aria-current="true"]{color:#7dd3fc}
 
 /* Content */
 .content{padding:48px 52px 60px;min-width:0}

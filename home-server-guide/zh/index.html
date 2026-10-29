@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d1526">
+<title>把旧电脑变成 24 小时在线的家庭服务器 — 你的私人代理服务器</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="一步一步：把旧电脑或迷你主机变成全天在线的私人代理与远程访问服务器，用 Xray（VLESS + REALITY）和 Hysteria2。每台设备独立账号，服务开机自启，带看门狗，再也不用每月交 VPN 费。">
+<link rel="stylesheet" href="../styles.css?v=3">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1526'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='%23ff7a29' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="canonical" href="https://marksong0917.github.io/home-server-guide/zh/">
+<link rel="alternate" hreflang="en" href="https://marksong0917.github.io/home-server-guide/">
+<link rel="alternate" hreflang="zh-CN" href="https://marksong0917.github.io/home-server-guide/zh/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="把旧电脑变成 24 小时在线的家庭服务器 — 你的私人代理服务器">
+<meta property="og:description" content="一步一步：把旧电脑或迷你主机变成全天在线的私人代理与远程访问服务器，用 Xray（VLESS + REALITY）和 Hysteria2。每台设备独立账号，服务开机自启，没有每月账单。">
+<meta property="og:url" content="https://marksong0917.github.io/home-server-guide/zh/">
+<meta property="og:image" content="https://marksong0917.github.io/og.png">
+<meta property="og:locale" content="zh_CN">
+</head>
+<body>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <a class="logo" href="#top">家庭 <span>服务器</span> 指南</a>
+    <p class="logo-sub">你的旧电脑。<br>你自己的服务器。<br>全天在线，只属于你。</p>
+    <nav class="side-nav" aria-label="章节">
+      <a href="#what">1. 这是什么</a>
+      <a href="#need">2. 你需要准备什么</a>
+      <a href="#oneclick">⚡ 一键安装</a>
+      <a href="#services">3. 两个核心服务</a>
+      <a href="#install">4. 安装成真正的服务</a>
+      <a href="#accounts">5. 每台设备独立账号</a>
+      <a href="#clients">6. 客户端</a>
+      <a href="#watchdog">7. 看门狗与维护</a>
+      <a href="#security">8. 安全守则</a>
+      <a href="#honest">9. 说几句实话</a>
+      <a href="#resources">参考资源</a>
+    </nav>
+    <p class="lang-switch"><a href="../">EN</a> · <a href="./" aria-current="true">中文</a></p>
+    <p class="side-foot">作者：Ze (Mark) Song<br>源自一套正在家里真实运行的配置。</p>
+  </aside>
+
+  <main class="content" id="top">
+
+    <header class="hero">
+      <h1>把旧电脑变成 24 小时在线的家庭服务器</h1>
+      <p class="hero-tag">角落里的一台旧笔记本或迷你主机，就能成为你自己的私人代理和远程访问服务器：出门在外时的自有出口、回连家庭网络的通道、旅行时的开放网络——不用每月交 VPN 费，也没有第三方在记录你。</p>
+      <div class="hero-meta">
+        <span>耗时：一个晚上</span>
+        <span>运行成本：0 元/月</span>
+        <span>硬件：任何一台旧电脑</span>
+      </div>
+      <p class="updated">最后更新：2026 年 10 月</p>
+    </header>
+
+    <section id="what">
+      <h2>1. 这是什么，为什么</h2>
+      <p>大多数人每个月给 VPN 公司交钱，借用别人的服务器。如果你家里有一台旧电脑，完全可以自己跑一台服务器——用你自己的宽带，在你自己的掌控之下。</p>
+      <ul class="steps">
+        <li><strong>你自己的出口。</strong>在酒店、机场或咖啡馆连上之后，你的流量从你自己的家庭宽带出去——你的家庭 IP、你所在的国家，流媒体和银行服务都照常可用。</li>
+        <li><strong>旅行时的开放网络。</strong>在网络过滤很严的地方——酒店 Wi-Fi 屏蔽了半个互联网，或者在中国、俄罗斯等许多日常网站和应用打不开的国家——连回家的这条线就是你的通道。</li>
+        <li><strong>访问家庭网络。</strong>像坐在自家沙发上一样，访问你的文件、其他机器和家里的各种服务。</li>
+        <li><strong>天生私密。</strong>没有 VPN 公司夹在中间，没有账号，除了你自己的日志之外没有任何记录。这台服务器上只有你一个人。</li>
+        <li><strong>运行成本低。</strong>旧笔记本或迷你主机性能完全够用，耗电很少，无头运行——不用屏幕、不用键盘，也没人登录它。</li>
+      </ul>
+      <div class="note"><strong>一句话说清这套配置：</strong>两个小巧的开源工具——<strong>Xray</strong> 和 <strong>Hysteria2</strong>——以开机自启服务的方式装在家里一台全天开机的电脑上，每台设备一个独立账号。</div>
+    </section>
+
+    <section id="need">
+      <h2>2. 你需要准备什么</h2>
+      <ul class="steps">
+        <li><strong>一台旧电脑。</strong>迷你主机或旧笔记本最理想。近十年的机器基本都可以，这个活儿很轻。Windows 或 Linux 都行。本指南先讲 Windows（参考机就是 Windows），不同之处会给出 Linux 的对应做法。</li>
+        <li><strong>家庭宽带。</strong>关键看上传速度：你连回家的流量上限就是家里的上传带宽，20&nbsp;Mbps 以上的上传用起来就很舒服。</li>
+        <li><strong>一条能找到家的路。</strong>大多数家庭 IP 会不时变化，所以要么注册一个免费的 DDNS 域名（比如 DuckDNS），让它始终指向你当前的家庭 IP，要么用路由器自带的 DDNS。路由器里还要做两件事：给服务器做 <strong>IP 地址保留</strong>，让它永远拿同一个内网地址；再做一条 <strong>443 端口转发</strong>（TCP 和 UDP），指向这个地址。</li>
+        <li><strong>一个晚上。</strong>手动装大约 1–2 小时，大部分时间在等下载——用下面的一键脚本，大约五分钟。</li>
+        <li><strong>一键安装的要求：</strong>一台运行 Debian 或 Ubuntu 的机器（家里的 Linux 迷你主机，或者一台小 VPS——1 核 CPU、1&nbsp;GB 内存完全够用），有 root 权限，443 端口（TCP + UDP）空闲。不占用其他任何端口。</li>
+        <li><strong>域名可选。</strong>一键安装用裸 IP 就能跑通。自己的域名只有以后想要用正规 TLS 证书（而不是自签证书）时才用得上。</li>
+      </ul>
+      <div class="note warn"><strong>电脑本身的一个设置：</strong>在 Windows 电源设置里，把接通电源时的睡眠设为<em>从不</em>。会打盹的服务器不是服务器。笔记本还要设置"合上盖子：不采取任何操作"（接通电源时）。</div>
+    </section>
+
+    <section id="oneclick">
+      <h2>⚡ 一键安装（推荐）</h2>
+      <p>在 Debian/Ubuntu 机器上——家里跑 Linux 的迷你主机，或者一台小 VPS——这一条命令就能完成整套服务器搭建：两个工具、两份配置、所有密钥当场在你的机器上新生成、服务全部启用，结束就能导入手机。</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>bash &lt;(curl -fsSL https://marksong0917.github.io/home-server-guide/install.sh)</code></pre></div>
+      <p><strong>脚本具体做什么，一步一步说清：</strong></p>
+      <ol class="steps">
+        <li>检查是否以 root 身份运行、系统是否为 Debian/Ubuntu，然后补装缺失的 curl/openssl。</li>
+        <li>用 XTLS 官方安装脚本装 <strong>Xray-core</strong>，用官方安装器装 <strong>Hysteria2</strong>——不经过任何第三方镜像。</li>
+        <li><strong>所有密钥都在你的服务器上当场生成</strong>：一个 UUID、一对 REALITY x25519 密钥和 short ID、Hysteria2 密码和混淆密码。脚本里不写死任何东西，数据也不离开这台机器。</li>
+        <li>写好可直接运行的配置：Xray VLESS + REALITY（vision 流）走 TCP 443，默认伪装成 <code>www.microsoft.com</code>；Hysteria2 走 UDP 443。Hysteria2 随即生成一张<strong>自签证书</strong>——如果你用 <code>HY2_CERT</code>/<code>HY2_KEY</code> 传入自己的域名证书，则用你的证书。</li>
+        <li>如果 <code>ufw</code> 防火墙处于启用状态，自动放行 443 TCP + UDP；启用两个 systemd 服务，启动并验证它们确实在运行。</li>
+        <li>打印<strong>可直接导入的链接</strong>（见下文）。脚本可以随时重跑——重跑会重新生成全部密钥，旧链接随即失效，需要导入新链接。卸载用 <code>bash install.sh uninstall</code>。</li>
+      </ol>
+      <p><strong>结束时打印的内容</strong>就是这趟的全部收获：服务器的公网 IP，加上两条拼装完成的分享链接——一条 <code>vless://</code> 和一条 <code>hy2://</code>。把这段总结存到私密的地方；这些链接就是你服务器的钥匙（见第 6 节）。</p>
+      <p><strong>导入 Shadowrocket：</strong>复制任意一条链接，打开 Shadowrocket，点 <strong>+</strong>——它会提示从剪贴板导入——或者扫链接的二维码。再导入第二条，你的手机上就有两条线路了。v2rayN（Windows）、v2rayNG（安卓）和 sing-box 同样支持粘贴导入。</p>
+      <div class="note warn"><strong>两句实话。</strong>（1）Hysteria2 用的是自签证书，所以链接里带 <code>insecure=1</code>：证书不证明服务器的身份，真正起验证作用的是密码。这是无域名个人服务器的标准取舍；之后想两者兼得，补上自己的域名和证书即可。（2）<strong>运行前先读一遍脚本</strong>——它就是一份可读的文件：<a href="../install.sh">install.sh</a>。把 root 脚本管道进 bash 之前先看清它干什么，这个习惯值得保留，包括对这一份。</div>
+      <p>想把每个部件都弄明白，或者家里用的是 Windows？下面的手动安装就是同一套东西，一步一步来。</p>
+    </section>
+
+    <section id="services">
+      <h2>3. 两个核心服务</h2>
+      <p>并排跑两个协议，因为没有哪一个在所有情况下都是最好的。它们互相补位。</p>
+      <h3>Xray — VLESS + REALITY（TCP 443）— 日常主力</h3>
+      <p>Xray 是引擎，VLESS 是协议，REALITY 是伪装。REALITY 让你的流量看起来就像一次访问某个真实知名网站的普通 HTTPS，这让它非常难被识别或封锁。它走 TCP 443——和所有安全网站相同的端口——所以几乎哪里都能通。这是你日常用的线路：最稳，也最难被察觉。</p>
+      <h3>Hysteria2（UDP 443，带混淆）— 极速车道</h3>
+      <p>Hysteria2 基于 QUIC/UDP，专为烂线路而设计：晚高峰拥堵、跨国长链路、丢包的酒店 Wi-Fi。在 TCP 慢如蜗牛的地方，Hysteria2 往往依然很快。它还加了一层混淆，让流量看起来不像裸奔的代理协议。这是主力线路感觉慢时你切换过去的那条。</p>
+      <div class="note"><strong>选择规则：</strong>默认用 REALITY。视频缓冲、晚高峰（大约晚上 8–11 点）、或者 REALITY 突然变慢 → 切到 Hysteria2。两条同时挂掉，几乎可以肯定问题出在家里——停电或者宽带断了——而不是服务器本身。</div>
+      <h3>配置长什么样</h3>
+      <p>两份配置都很小。下面是简化模板——每个私密值都是占位符，由你替换成自己的（第 5 节讲每个值从哪来）。完整选项参考在各项目的官方文档里，链接见"参考资源"。</p>
+      <p>Xray，<code>config.json</code>：</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>{
+  "inbounds": [{
+    "port": 443,
+    "protocol": "vless",
+    "settings": {
+      "clients": [
+        { "id": "&lt;phone-uuid&gt;",  "flow": "xtls-rprx-vision" },
+        { "id": "&lt;laptop-uuid&gt;", "flow": "xtls-rprx-vision" }
+      ],
+      "decryption": "none"
+    },
+    "streamSettings": {
+      "network": "tcp",
+      "security": "reality",
+      "realitySettings": {
+        "dest": "&lt;camouflage-site&gt;:443",
+        "serverNames": ["&lt;camouflage-site&gt;"],
+        "privateKey": "&lt;your-reality-private-key&gt;",
+        "shortIds": ["&lt;your-short-id&gt;"]
+      }
+    }
+  }],
+  "outbounds": [{ "protocol": "freedom" }]
+}</code></pre></div>
+      <p>Hysteria2，<code>config.yaml</code>：</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>listen: :443
+
+tls:
+  cert: &lt;path-to-your-certificate&gt;
+  key: &lt;path-to-your-certificate-key&gt;
+
+obfs:
+  type: salamander
+  salamander:
+    password: &lt;your-obfs-password&gt;
+
+auth:
+  type: userpass
+  userpass:
+    phone: &lt;phone-password&gt;
+    laptop: &lt;laptop-password&gt;
+
+masquerade:
+  type: proxy
+  proxy:
+    url: https://&lt;a-normal-website&gt;
+    rewriteHost: true</code></pre></div>
+      <p>在服务器上生成你自己的密钥——永远不要复制任何指南里的密钥，包括这一篇：</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>xray uuid        # 每台设备生成一个新的 UUID
+xray x25519      # 你的 REALITY 密钥对（私钥只留在服务器上）</code></pre></div>
+    </section>
+
+    <section id="install">
+      <h2>4. 手动安装 — 装成真正的服务</h2>
+      <p><strong>手动安装 —— 把每个部件都弄明白。</strong>这就是一键脚本做的同一套东西，改成手工完成。正是这一步，让这套配置从"我登录时能用"变成"24 小时在线"。两个工具都以正经的操作系统服务方式运行：开机自启、无需登录、崩溃自动重启、停电恢复后自己回来。</p>
+      <h3>Windows —— 用 WinSW 把每个工具包装成服务</h3>
+      <ol class="steps">
+        <li>从官方发布页（见参考资源）下载 Xray 和 Hysteria2，放进类似 <code>C:\Server\</code> 的文件夹，配置文件放在旁边。</li>
+        <li>下载 WinSW，在每个工具旁边放一份，并改成与一个小 XML 文件同名。每个服务一个 XML：</li>
+      </ol>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>&lt;service&gt;
+  &lt;id&gt;HomeXray&lt;/id&gt;
+  &lt;name&gt;Home Xray&lt;/name&gt;
+  &lt;executable&gt;C:\Server\xray\xray.exe&lt;/executable&gt;
+  &lt;arguments&gt;run -c C:\Server\xray\config.json&lt;/arguments&gt;
+  &lt;startmode&gt;Automatic&lt;/startmode&gt;
+  &lt;onfailure action="restart" delay="10 sec" /&gt;
+&lt;/service&gt;</code></pre></div>
+      <ol class="steps" start="3">
+        <li>在管理员终端里安装每个服务（<code>HomeXray.exe install</code>，然后 <code>start</code>），Hysteria2 同理。再去"服务"面板里把两个服务都设为<strong>自动</strong>启动、<strong>失败时重启</strong>，作为第二重保障。</li>
+        <li>在 Windows 防火墙里给每个程序放行——按程序建入站规则，不要开得更宽：</li>
+      </ol>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>New-NetFirewallRule -DisplayName "Xray 443 TCP" -Direction Inbound -Program "C:\Server\xray\xray.exe" -Action Allow
+New-NetFirewallRule -DisplayName "Hysteria2 443 UDP" -Direction Inbound -Program "C:\Server\hysteria\hysteria.exe" -Protocol UDP -Action Allow</code></pre></div>
+      <ol class="steps" start="5">
+        <li>在路由器里：保留服务器的内网 IP，然后把 <strong>TCP 443</strong> 和 <strong>UDP 443</strong> 转发给它。你打开的门只有这一扇。</li>
+        <li><strong>断电自恢复：</strong>在电脑 BIOS 里把 <em>Restore on AC Power Loss（来电恢复）</em>设为 <em>Power On（开机）</em>。这样停电也能自愈：来电 → 电脑开机 → 服务启动 → 你重新在线，全程不需要家里有人。</li>
+      </ol>
+      <h3>Linux —— 同样的思路，用 systemd</h3>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>[Unit]
+Description=Home Xray
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/xray run -c /etc/xray/config.json
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target</code></pre></div>
+      <p>存为 <code>/etc/systemd/system/xray.service</code>，然后 <code>systemctl enable --now xray</code>。Hysteria2 重复一遍；防火墙只放行 443 的 TCP/UDP。</p>
+      <h3>排障 —— 服务启动失败</h3>
+      <p>十有八九是配置里写错了一行，而服务自己的日志会准确告诉你错在哪一行。Linux 上：</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>systemctl status xray --no-pager          # 它在跑吗？为什么停了？
+journalctl -u xray -e --no-pager          # Xray 日志，看最新几条
+journalctl -u hysteria-server -e --no-pager
+xray run -test -config /usr/local/etc/xray/config.json   # 单独验证配置文件</code></pre></div>
+      <p>改掉日志指出的那一行，然后 <code>systemctl restart xray</code>。Windows 上打开"服务"面板看对应服务——服务一启动立刻就停，几乎总是 WinSW 的 XML 里配置路径写错了，或者配置本身有错；用同一个配置在终端里手动运行一次工具，它会把错误明明白白打印出来。</p>
+    </section>
+
+    <section id="accounts">
+      <h2>5. 每台设备独立账号</h2>
+      <p>每台设备用它<strong>自己</strong>的凭据：手机一个 UUID（Xray）加一个密码（Hysteria2），笔记本换一对，家里其他人再换一对。设置时多花两分钟，第一次出问题时就回本了：</p>
+      <ul class="steps">
+        <li><strong>吊销一个，不影响其他。</strong>手机丢了或换了？删掉那一个账号。其他每台设备照常工作，纹丝不动。</li>
+        <li><strong>一眼看清谁是谁。</strong>每个账号都有名字，配置读起来像一份你的设备清单，而不是一堆随机字符串。</li>
+        <li><strong>绝不共用账号。</strong>想给别人开权限，就给对方单独建一个账号（第 8 节）。</li>
+      </ul>
+      <p>两个协议、两台设备，最后就是四条记录——手机-REALITY、手机-HY2、笔记本-REALITY、笔记本-HY2。整个系统就这么多。</p>
+    </section>
+
+    <section id="clients">
+      <h2>6. 客户端</h2>
+      <p>在你的设备上用一个小巧的免费客户端应用。服务器地址、密钥和密码会被打包进一条<strong>分享链接</strong>（或它的二维码），每个工具都能从你的配置生成——导入一次，点一下就能连。</p>
+      <ul class="steps">
+        <li><strong>iPhone / iPad：</strong>Shadowrocket（App Store）。扫二维码或粘贴链接即可添加节点。</li>
+        <li><strong>安卓：</strong>v2rayNG（免费、开源）。从剪贴板或二维码导入。</li>
+        <li><strong>Windows：</strong>v2rayN（免费、开源）。复制链接，从剪贴板导入，选好节点，打开系统代理。</li>
+      </ul>
+      <p>一条分享链接长这样——注意，它里面的每个值都是钥匙：</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>vless://&lt;uuid&gt;@&lt;your-server-address&gt;:443?security=reality&amp;sni=&lt;camouflage-site&gt;&amp;pbk=&lt;your-reality-public-key&gt;&amp;sid=&lt;your-short-id&gt;&amp;flow=xtls-rprx-vision#Phone</code></pre></div>
+      <div class="note warn"><strong>把分享链接当成家门钥匙。</strong>拿到它的人就能像你本人一样使用你的家庭网络。只发给自己和自己的设备，存进密码管理器，永远不要把链接或二维码贴到任何公开的地方——截图里不行，求助帖里也不行。哪一条泄露了，就改掉那台设备的 UUID 和密码再重新导入，泄露一分钟内作废。</div>
+      <p><strong>验证是否生效：</strong>连上之后，打开任意一个"我的 IP 是多少"的网站。它应该显示你家的城市和你家的宽带运营商。断开后变回当地网络——这一前一后的差别就是证据。</p>
+    </section>
+
+    <section id="watchdog">
+      <h2>7. 看门狗与维护</h2>
+      <p>一台全天在线的服务器应该能自己照顾自己。一个小小的定时检查做三件事：把停掉的服务拉起来、留意公网 IP 的变化、留一份日志让以后的你知道发生过什么。</p>
+      <h3>看门狗（Windows 示意）</h3>
+      <p>一个每 10 分钟跑一次的计划任务，外加一个开机两分钟后跑的，大致是这样一个脚本：</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>$log = "C:\Server\logs\watchdog.log"
+foreach ($name in "HomeXray", "HomeHy2") {
+  if ((Get-Service $name).Status -ne "Running") {
+    Start-Service $name
+    "$(Get-Date -Format s) restarted $name" | Add-Content $log
+  }
+}
+# Once in a while, note the public IP so a change is easy to spot
+$ip = (Invoke-RestMethod "https://api.ipify.org")
+"$(Get-Date -Format s) public IP: $ip" | Add-Content $log</code></pre></div>
+      <p>在 Linux 上，同样的活儿是一个 cron 任务或 systemd 定时器，跑 <code>systemctl is-active</code> 检查——说实话，systemd 的 <code>Restart=on-failure</code> 已经把大部分活儿干了。</p>
+      <h3>偶尔做做的维护</h3>
+      <ul class="steps">
+        <li><strong>原地更新。</strong>每隔一两个月，把 Xray 和 Hysteria2 的新版放进去，重启服务。旧版本的目录先留着，等新版稳定运行一天再删——回滚就是两分钟的事。</li>
+        <li><strong>保持系统更新。</strong>让 Windows Update（或你的发行版）照常更新，安排在没人用的时段。</li>
+        <li><strong>备份配置文件夹。</strong>你的配置和凭据就是整台服务器。每次改动之后，把文件夹复制一份到安全的地方。</li>
+      </ul>
+      <div class="note warn"><strong>配置文件就是密码。</strong>它装着每一个密钥和账号。备份要像存密码一样存——加密硬盘或密码管理器——永远不要放进公开仓库、共享文件夹，或者用邮件发给自己。</div>
+    </section>
+
+    <section id="security">
+      <h2>8. 安全守则</h2>
+      <ul class="donts">
+        <li><strong>强壮、独立的凭据。</strong>Xray 每台设备一个随机生成的新 UUID，Hysteria2 每台设备一个长随机密码，混淆密码再单独一个。全部机器生成，绝不靠脑子想，绝不与任何其他东西复用。</li>
+        <li><strong>只暴露 443。</strong>转发到这台服务器的只有 TCP 443 和 UDP 443。远程桌面、管理面板、文件共享，永远不要对互联网开放。带网页面板的管理工具，只留在家庭内网里。</li>
+        <li><strong>链接和二维码绝不外传。</strong>它们就是钥匙（第 6 节）。不进截图、不进聊天、不进"帮我看看哪里错了"的帖子。</li>
+        <li><strong>一人一个账号。</strong>家里人用各自的账号，这样吊销一个人不会把所有人都锁在门外。</li>
+        <li><strong>不用的就关掉。</strong>每多跑一个服务，就多一分暴露面。这台服务器只跑那两个工具、看门狗，别的不跑。</li>
+        <li><strong>让这台机器保持无聊。</strong>不在服务器上乱下载东西，不拿它当日常电脑上网。它现在是一台家电。</li>
+      </ul>
+    </section>
+
+    <section id="honest">
+      <h2>9. 说几句实话</h2>
+      <ul class="steps">
+        <li><strong>唯一的运行成本是电费。</strong>迷你主机待机大约 10&nbsp;W——一年约 90&nbsp;度电，没多少钱。老台式机塔机耗电更高；旧笔记本或迷你主机是甜点位。</li>
+        <li><strong>你的速度上限是家庭上传。</strong>工具本身很快，限制在你的线路。跨国长链路又赶上晚高峰时，期待值应该是"看视频和日常浏览够用"，而不是跑出你家宽带的全速。</li>
+        <li><strong>它依赖你的房子。</strong>家里停电或断网，服务器就下线。第 4 节的断电自启设置能让恢复自动完成，但没什么能让家庭线路固若金汤。</li>
+        <li><strong>了解当地规则。</strong>各国的网络规则不同，而且会变。查清楚你居住地和旅行地分别适用什么。本指南仅供你在自己的硬件、自己的线路上私人使用。</li>
+        <li><strong>不要出售访问权限。</strong>一旦开始向别人收费，你就是在住宅宽带上经营生意——违反绝大多数运营商的条款，也是另一个法律世界了。让它只属于你。</li>
+      </ul>
+    </section>
+
+    <section id="resources">
+      <h2>参考资源</h2>
+      <ul class="res">
+        <li><a href="https://github.com/XTLS/Xray-core" target="_blank" rel="noopener">Xray-core（GitHub）</a> — Xray 引擎，官方发布。文档在 <a href="https://xtls.github.io" target="_blank" rel="noopener">xtls.github.io</a>。</li>
+        <li><a href="https://github.com/HyNetworks/hysteria" target="_blank" rel="noopener">Hysteria（GitHub）</a> — Hysteria2 发布。文档在 <a href="https://v2.hysteria.network" target="_blank" rel="noopener">v2.hysteria.network</a>。</li>
+        <li><a href="https://github.com/winsw/winsw" target="_blank" rel="noopener">WinSW（GitHub）</a> — 第 4 节用到的 Windows 服务包装器。</li>
+        <li><a href="https://github.com/2dust/v2rayNG" target="_blank" rel="noopener">v2rayNG（GitHub）</a> — 安卓客户端。</li>
+        <li><a href="https://github.com/2dust/v2rayN" target="_blank" rel="noopener">v2rayN（GitHub）</a> — Windows 客户端。</li>
+        <li><strong>Shadowrocket</strong> — iOS 客户端，在 App Store 里。</li>
+        <li><a href="https://www.duckdns.org" target="_blank" rel="noopener">DuckDNS</a> — 免费 DDNS 域名，跟着你变化的家庭 IP 走（大多数路由器也自带一个）。</li>
+        <li><a href="https://marksong0917.github.io/win11-optimization-guide/" target="_blank" rel="noopener">Windows 11 Min-Max 指南</a> — 配套阅读：先要把机器本身收拾好？我的 Windows 11 Min-Max 指南讲了这套服务器搭建所基于的干净安装与调校。</li>
+      </ul>
+    </section>
+
+    <section class="funnel">
+      <h2>关于作者</h2>
+      <p>作者 <strong>Ze (Mark) Song</strong>——加拿大安大略省 Aurora 的一名程序员。我在做 <strong>Foxuma</strong>，一个面向橱柜与木作车间的业务平台。</p>
+      <p class="funnel-actions">
+        <a class="funnel-btn primary" href="https://foxuma.com" target="_blank" rel="noopener">看看 Foxuma</a>
+        <a class="funnel-btn" href="https://marksong0917.github.io/demo/" target="_blank" rel="noopener">试用 Foxuma 演示</a>
+        <a class="funnel-btn" href="https://marksong0917.github.io/" target="_blank" rel="noopener">我的作品集</a>
+      </p>
+    </section>
+
+    <footer class="foot">
+      <p>家庭服务器指南——把旧电脑变成你自己的 24 小时私人代理与远程访问服务器。源自 Ze (Mark) Song 搭建并真实运行的一套配置。仅供在你自己的硬件上私人使用。工具名称归各自所有者所有。本指南中的每一个地址、密钥和密码都是占位符——请生成你自己的。</p>
+      <p><a href="https://marksong0917.github.io/">← Mark Song — 作品集</a> &nbsp;·&nbsp; <a href="https://marksong0917.github.io/demo/">试用 Foxuma 演示 →</a></p>
+    </footer>
+
+  </main>
+</div>
+
+<button type="button" class="to-top" id="toTop" aria-label="回到顶部">&uarr;</button>
+
+<script src="../script.js?v=3"></script>
+</body>
+</html>

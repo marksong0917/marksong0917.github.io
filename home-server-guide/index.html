@@ -9,7 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <meta name="description" content="Step by step: turn an old PC or mini PC into your own always-on private proxy and remote-access server with Xray (VLESS + REALITY) and Hysteria2. Per-device accounts, auto-start services, a watchdog, and no monthly VPN bill.">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
+<link rel="alternate" hreflang="en" href="https://marksong0917.github.io/home-server-guide/">
+<link rel="alternate" hreflang="zh-CN" href="https://marksong0917.github.io/home-server-guide/zh/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1526'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='%23ff7a29' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 <link rel="canonical" href="https://marksong0917.github.io/home-server-guide/">
 <meta property="og:type" content="website">
@@ -29,6 +31,7 @@
     <nav class="side-nav" aria-label="Sections">
       <a href="#what">1. What this is</a>
       <a href="#need">2. What you need</a>
+      <a href="#oneclick">⚡ One-click setup</a>
       <a href="#services">3. The two services</a>
       <a href="#install">4. Install as real services</a>
       <a href="#accounts">5. Per-device accounts</a>
@@ -38,6 +41,7 @@
       <a href="#honest">9. Honest notes</a>
       <a href="#resources">Resources</a>
     </nav>
+    <p class="lang-switch"><a href="./" aria-current="true">EN</a> · <a href="zh/" hreflang="zh-CN">中文</a></p>
     <p class="side-foot">By Ze (Mark) Song<br>Written from a real setup, running at home right now.</p>
   </aside>
 
@@ -73,9 +77,30 @@
         <li><strong>An old PC.</strong> A mini PC or an old laptop is ideal. Almost any machine from the last ten years works — the job is light. Windows or Linux, either is fine. This guide shows Windows first (that is what the reference build runs), with the Linux equivalent where it differs.</li>
         <li><strong>Home internet.</strong> Upload speed is what matters: your traffic home is limited by your home upload, so 20&nbsp;Mbps up or more feels good.</li>
         <li><strong>A way to reach home.</strong> Most home IPs change from time to time, so either set up a free DDNS name (for example DuckDNS) that always points at your current home IP, or use your router's built-in DDNS. You also need two things in your router: an <strong>IP reservation</strong> so the server always keeps the same local address, and a <strong>port forward</strong> for port 443 (TCP and UDP) to that address.</li>
-        <li><strong>One evening.</strong> About 1–2 hours, most of it waiting for downloads.</li>
+        <li><strong>One evening.</strong> About 1–2 hours by hand, most of it waiting for downloads — or about five minutes with the one-click script below.</li>
+        <li><strong>For the one-click path:</strong> a machine running Debian or Ubuntu (a home mini PC, or a small rented VPS — 1 vCPU and 1&nbsp;GB of RAM is plenty), root access, and port 443 (TCP + UDP) free. No other ports are used.</li>
+        <li><strong>A domain is optional.</strong> The one-click setup works with your bare IP address. Your own domain only becomes useful later, if you want a real TLS certificate instead of a self-signed one.</li>
       </ul>
       <div class="note warn"><strong>One setting on the PC itself:</strong> in Windows power settings, set sleep to <em>Never</em> on AC power. A server that naps is not a server. On a laptop, also set "close lid: do nothing" while plugged in.</div>
+    </section>
+
+    <section id="oneclick">
+      <h2>⚡ One-click setup (recommended)</h2>
+      <p>On a Debian/Ubuntu machine — a home mini PC running Linux, or a small VPS — this one command does the whole server setup: both tools, both configs, all secrets generated fresh on your machine, services enabled, ready to import into your phone.</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>bash &lt;(curl -fsSL https://marksong0917.github.io/home-server-guide/install.sh)</code></pre></div>
+      <p><strong>What the script does, step by step:</strong></p>
+      <ol class="steps">
+        <li>Checks it is running as root on Debian/Ubuntu, then installs curl/openssl if missing.</li>
+        <li>Installs <strong>Xray-core</strong> with the official XTLS install script and <strong>Hysteria2</strong> with its official installer — no third-party mirrors.</li>
+        <li><strong>Generates every secret on your server, during the run</strong>: a UUID, a REALITY x25519 key pair and short ID, a Hysteria2 password and an obfuscation password. Nothing is hardcoded and nothing leaves the machine.</li>
+        <li>Writes a working config: Xray VLESS + REALITY (vision flow) on TCP 443, camouflaged as <code>www.microsoft.com</code> by default, and Hysteria2 on UDP 443. For Hysteria2 it generates a <strong>self-signed certificate</strong> on the spot — or uses your own domain certificate if you pass <code>HY2_CERT</code>/<code>HY2_KEY</code>.</li>
+        <li>Opens 443 TCP + UDP if <code>ufw</code> is active, enables both systemd services, starts them, and verifies they are actually running.</li>
+        <li>Prints your <strong>ready-to-import links</strong> (see below). Run it again any time — a re-run regenerates all secrets, so old links stop working and you import the new ones. Remove everything with <code>bash install.sh uninstall</code>.</li>
+      </ol>
+      <p><strong>What it prints at the end</strong> is the whole payoff: your server's public IP plus two finished share links — a <code>vless://</code> link and a <code>hy2://</code> link, fully assembled. Save that summary somewhere private; the links are keys to your server (Section 6).</p>
+      <p><strong>Import into Shadowrocket:</strong> copy either link, open Shadowrocket, tap <strong>+</strong> — it offers to import from the clipboard — or scan a QR code of the link. Repeat for the second link and you have both lines on your phone. The same paste-import works in v2rayN (Windows), v2rayNG (Android) and sing-box.</p>
+      <div class="note warn"><strong>Two honest notes.</strong> (1) The Hysteria2 certificate is self-signed, so its link carries <code>insecure=1</code>: the certificate does not prove the server's identity — the password does the authenticating. That is the standard trade-off for a personal server without a domain; add your own domain + certificate later if you want both. (2) <strong>Read the script before you run it</strong> — it is one readable file, <a href="install.sh">install.sh</a>, and checking what a root script does before piping it into bash is a habit worth keeping, this one included.</div>
+      <p>Prefer to understand every piece, or running Windows at home? The manual setup below is the same build, step by step.</p>
     </section>
 
     <section id="services">
@@ -142,8 +167,8 @@ xray x25519      # your REALITY key pair (private stays on the server)</code></p
     </section>
 
     <section id="install">
-      <h2>4. Install as real services</h2>
-      <p>This is the step that makes the setup "24/7" instead of "works while I'm logged in". Both tools run as proper operating-system services: they start at boot with no logon, restart themselves if they crash, and come back on their own after a power cut.</p>
+      <h2>4. Manual setup — install as real services</h2>
+      <p><strong>Manual setup — understand every piece.</strong> This is the same build the one-click script does, done by hand. This is the step that makes the setup "24/7" instead of "works while I'm logged in". Both tools run as proper operating-system services: they start at boot with no logon, restart themselves if they crash, and come back on their own after a power cut.</p>
       <h3>Windows — wrap each tool with WinSW</h3>
       <ol class="steps">
         <li>Download Xray and Hysteria2 from their official releases (Resources) into a folder such as <code>C:\Server\</code>, with their config files beside them.</li>
@@ -180,6 +205,13 @@ RestartSec=10
 [Install]
 WantedBy=multi-user.target</code></pre></div>
       <p>Save it as <code>/etc/systemd/system/xray.service</code>, then <code>systemctl enable --now xray</code>. Repeat for Hysteria2, and open only 443 TCP/UDP in your firewall.</p>
+      <h3>Troubleshooting — a service failed to start</h3>
+      <p>Nine times out of ten it is a typo in the config, and the service's own log tells you exactly which line. On Linux:</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>systemctl status xray --no-pager          # is it running? why did it stop?
+journalctl -u xray -e --no-pager          # Xray log, latest entries
+journalctl -u hysteria-server -e --no-pager
+xray run -test -config /usr/local/etc/xray/config.json   # validate the config alone</code></pre></div>
+      <p>Fix the line the log points at, then <code>systemctl restart xray</code>. On Windows, open the service in the Services panel — a service that stops immediately almost always means the config path in its WinSW XML is wrong, or the config itself has an error; run the tool once by hand in a terminal with the same config and it will print the error in plain text.</p>
     </section>
 
     <section id="accounts">
@@ -289,6 +321,6 @@ $ip = (Invoke-RestMethod "https://api.ipify.org")
 
 <button type="button" class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
