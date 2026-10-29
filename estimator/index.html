@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instant Estimate — Maple Works Studio (Demo)</title>
+<meta name="description" content="Demo: an instant kitchen and closet cost estimator a shop puts on its website. Sample prices only.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="demo-banner"><strong>Demo</strong> — sample shop “Maple Works Studio”, sample prices. Nothing you enter is sent anywhere.</div>
+
+<header class="top">
+  <a class="brand" href="#">Maple Works Studio</a>
+  <span class="top-tag">Instant estimate</span>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <h1>Get a price in about a minute.</h1>
+    <p>Answer four quick questions and see your ballpark range right away — no waiting for a callback. Like the numbers? Leave your details and we will send you this quote.</p>
+  </section>
+
+  <form id="estimator" novalidate>
+    <!-- 1. Type -->
+    <section class="panel" aria-labelledby="h-type">
+      <h2 id="h-type"><span class="step-no">1</span> What are we building?</h2>
+      <div class="cards">
+        <label class="card">
+          <input type="radio" name="type" value="kitchen" checked>
+          <span class="card-title">Kitchen</span>
+          <span class="card-sub">Cabinets, counters, the works</span>
+        </label>
+        <label class="card">
+          <input type="radio" name="type" value="closet">
+          <span class="card-title">Closet</span>
+          <span class="card-sub">Built-in storage that fits your wall</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- 2. Size -->
+    <section class="panel" aria-labelledby="h-size">
+      <h2 id="h-size"><span class="step-no">2</span> <span id="size-label">How many metres of cabinets?</span></h2>
+      <p class="hint" id="size-hint">Measure along the wall where the cabinets will run. A tape measure and two minutes is all it takes.</p>
+      <div class="size-row">
+        <button type="button" class="step-btn" id="size-minus" aria-label="Decrease size">−</button>
+        <div class="size-read"><span id="size-value">4.0</span> <span class="size-unit">m</span></div>
+        <button type="button" class="step-btn" id="size-plus" aria-label="Increase size">+</button>
+      </div>
+      <input type="range" id="size" min="2" max="10" step="0.5" value="4" aria-label="Size in metres">
+      <div class="size-scale"><span id="size-min">2 m</span><span id="size-max">10 m</span></div>
+    </section>
+
+    <!-- 3. Level -->
+    <section class="panel" aria-labelledby="h-level">
+      <h2 id="h-level"><span class="step-no">3</span> Pick your level</h2>
+      <div class="cards cards-3">
+        <label class="card">
+          <input type="radio" name="level" value="standard" checked>
+          <span class="card-title">Standard</span>
+          <span class="card-sub">Clean, durable melamine and thermofoil fronts. Built to last, easy on the budget.</span>
+        </label>
+        <label class="card">
+          <input type="radio" name="level" value="premium">
+          <span class="card-title">Premium</span>
+          <span class="card-sub">Painted MDF and wood accents, better hardware, a step up in finish.</span>
+        </label>
+        <label class="card">
+          <input type="radio" name="level" value="luxury">
+          <span class="card-title">Luxury</span>
+          <span class="card-sub">Solid wood, custom colours, top-tier hardware and detailing throughout.</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- 4. Extras -->
+    <section class="panel" aria-labelledby="h-extras">
+      <h2 id="h-extras"><span class="step-no">4</span> Any extras?</h2>
+      <div class="extras" id="extras-kitchen">
+        <label class="extra"><input type="checkbox" data-extra="stone"><span class="extra-body"><span class="extra-name">Stone countertop</span><span class="extra-price">+ $2,400 – $3,600</span></span></label>
+        <label class="extra"><input type="checkbox" data-extra="island"><span class="extra-body"><span class="extra-name">Island</span><span class="extra-price">+ $3,500 – $5,500</span></span></label>
+        <label class="extra"><input type="checkbox" data-extra="softclose-k"><span class="extra-body"><span class="extra-name">Soft-close everything</span><span class="extra-price">+ $600 – $900</span></span></label>
+        <label class="extra"><input type="checkbox" data-extra="lighting-k"><span class="extra-body"><span class="extra-name">Under-cabinet lighting</span><span class="extra-price">+ $450 – $750</span></span></label>
+      </div>
+      <div class="extras" id="extras-closet" hidden>
+        <label class="extra"><input type="checkbox" data-extra="organizers"><span class="extra-body"><span class="extra-name">Organizers &amp; dividers</span><span class="extra-price">+ $500 – $800</span></span></label>
+        <label class="extra"><input type="checkbox" data-extra="drawers"><span class="extra-body"><span class="extra-name">Bank of drawers</span><span class="extra-price">+ $900 – $1,400</span></span></label>
+        <label class="extra"><input type="checkbox" data-extra="softclose-c"><span class="extra-body"><span class="extra-name">Soft-close everything</span><span class="extra-price">+ $400 – $650</span></span></label>
+        <label class="extra"><input type="checkbox" data-extra="lighting-c"><span class="extra-body"><span class="extra-name">Built-in lighting</span><span class="extra-price">+ $400 – $700</span></span></label>
+      </div>
+    </section>
+
+    <!-- 5. Result -->
+    <section class="result" aria-labelledby="h-result" aria-live="polite">
+      <h2 id="h-result">Your ballpark range</h2>
+      <div class="result-range" id="result-range">$7,200 – $10,400</div>
+      <ul class="breakdown" id="breakdown"></ul>
+      <p class="result-note">Sample prices — demo only. A real shop loads its own prices. Your final quote is confirmed after a proper measure.</p>
+    </section>
+
+    <!-- 6. Lead form -->
+    <section class="panel lead" aria-labelledby="h-lead">
+      <h2 id="h-lead">Send me this quote</h2>
+      <p class="hint">We will email or text this estimate to you — and a real person follows up. No spam, ever.</p>
+      <div class="fields">
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" id="lead-name" autocomplete="name" placeholder="e.g. Alex Chen">
+        </label>
+        <label class="field">
+          <span>Email or phone</span>
+          <input type="text" id="lead-contact" autocomplete="email" placeholder="you@email.com or 416…">
+        </label>
+      </div>
+      <p class="error" id="lead-error" hidden>Please add your name and an email or phone so we know where to send it.</p>
+      <button type="submit" class="cta" id="lead-submit">Send me this quote</button>
+
+      <div class="success" id="success" hidden>
+        <h3>Done — your estimate is on its way.</h3>
+        <p id="success-summary"></p>
+        <p class="success-note">In the live version, this lands in the shop's inbox and Foxuma as a new lead.</p>
+      </div>
+    </section>
+  </form>
+
+  <!-- Shop-owner strip -->
+  <aside class="owner-strip">
+    <p><strong>Like this on your site?</strong> This is a York Region Web Studio add-on for Foxuma shops — your customers get a price in about a minute, you get the lead.</p>
+    <div class="owner-links">
+      <a href="https://marksong0917.github.io/" target="_blank" rel="noopener">See the portfolio</a>
+      <a href="https://foxuma.com" target="_blank" rel="noopener">Visit Foxuma</a>
+    </div>
+  </aside>
+
+  <footer class="foot">
+    <p>Maple Works Studio is a sample brand used for this demo. Prices are sample prices for demonstration only.</p>
+  </footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
