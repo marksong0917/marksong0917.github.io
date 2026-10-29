@@ -7,6 +7,7 @@ const projects = [
   { rank: 'No. 4', name: 'Havenwest Closets', status: 'Live', cls: 'live', pct: 100, desc: 'Website and brand identity for a custom closets and storage company — fully custom, locally built, high-end brand.', link: 'https://havenwestclosets.com', linkText: 'havenwestclosets.com' },
   { rank: 'No. 5', name: 'Shadowrocket Servers', status: 'Running 24/7', cls: 'running', pct: 100, desc: 'Self-hosted private network servers I built on my own hardware — per-device access, encrypted connections, automatic recovery, runs unattended.', link: '', note: 'Private infrastructure — details on request' },
   { rank: 'No. 6', name: 'Mir2 Game Server', status: 'Running 24/7', cls: 'running', pct: 100, desc: 'A self-hosted Legend of Mir 2 (1.76) online game server I built and run — custom configuration, scheduled backups, steady uptime.', link: '', note: 'Private server — details on request' },
+  { rank: 'Demo', name: 'Self-Measure Kit', status: 'Live', cls: 'live', pct: 100, desc: 'Homeowners measure their own kitchen or closet and the shop gets a quote-ready summary. A demo of the add-on I build for shops.', link: 'measure-kit/', linkText: 'Try the Self-Measure Kit' },
   { rank: 'Guide', name: 'Windows 11 Min-Max Guide', status: 'Published', cls: 'guide', pct: 100, desc: 'My Windows 11 optimization guide, rewritten as a public site: minimal bloat, maximum performance, step by step.', link: 'https://marksong0917.github.io/win11-optimization-guide/', linkText: 'Read the guide' },
 ];
 const grid = document.getElementById('projectGrid');
