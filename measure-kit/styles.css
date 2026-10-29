@@ -110,3 +110,8 @@ h1,h2,.brand,.card-title{font-family:'Sora',sans-serif}
 @media (prefers-reduced-motion:reduce){
   .progress-bar i{transition:none}
 }
+
+/* Standalone release additions: per-field errors + helper note */
+.field-error{margin-top:6px;font-size:.85rem}
+.field input[aria-invalid="true"]{border-color:#b3261e;outline-color:#b3261e}
+.hint.helper{margin-top:-8px;font-size:.88rem;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
