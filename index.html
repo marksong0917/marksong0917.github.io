@@ -5,10 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ze (Mark) Song — I Build Software, Websites & Servers | Aurora, Ontario</title>
 <meta name="description" content="Ze (Mark) Song — programmer and builder in Aurora, Ontario. Creator of Foxuma. ~10 years of experience: web platforms, business websites, self-hosted servers and game servers.">
+<link rel="canonical" href="https://marksong0917.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ze (Mark) Song — Portfolio">
+<meta property="og:title" content="Ze (Mark) Song — I Build Software, Websites & Servers">
+<meta property="og:description" content="Programmer and builder in Aurora, Ontario. Creator of Foxuma — a full business platform. Premium websites, self-hosted servers, public guides.">
+<meta property="og:url" content="https://marksong0917.github.io/">
+<meta property="og:locale" content="en_CA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ze (Mark) Song — I Build Software, Websites & Servers">
+<meta name="twitter:description" content="Programmer and builder in Aurora, Ontario. Creator of Foxuma. Premium websites, self-hosted servers, public guides.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ze (Mark) Song",
+  "jobTitle": "Programmer & Web Developer",
+  "url": "https://marksong0917.github.io/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Aurora",
+    "addressRegion": "Ontario",
+    "addressCountry": "CA"
+  },
+  "sameAs": [
+    "https://github.com/marksong0917",
+    "https://foxuma.com"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1526'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='%23ff7a29' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -21,12 +50,15 @@
       <h1>Ze (Mark) Song</h1>
       <p class="role">Programmer · Builder</p>
       <p class="loc">Aurora, Ontario, Canada</p>
-      <p class="avail"><span class="dot"></span> Available for projects</p>
+      <p class="avail"><span class="dot" aria-hidden="true"></span> Available for projects</p>
     </div>
-    <nav class="side-nav" aria-label="Sections">
+    <nav class="side-nav" aria-label="Portfolio sections">
       <a href="#overview" class="on">Overview</a>
       <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#systems">Systems I run</a>
       <a href="#stack">Tech stack</a>
+      <a href="#guides">Guides</a>
       <a href="#log">Build log</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
@@ -52,16 +84,28 @@
     </section>
 
     <section class="kpis" aria-label="At a glance">
-      <div class="kpi"><span>Experience</span><strong>~10 yrs</strong><em>Industry</em></div>
-      <div class="kpi"><span>Projects shipped</span><strong>6+</strong><em>Live in production</em></div>
-      <div class="kpi"><span>Servers running</span><strong>24/7</strong><em>Self-hosted, my hardware</em></div>
-      <div class="kpi"><span>Guides published</span><strong>2</strong><em>Win11 + home server</em></div>
+      <div class="kpi">
+        <span class="kpi-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <span>Experience</span><strong>~10 yrs</strong><em>Industry</em>
+      </div>
+      <div class="kpi">
+        <span class="kpi-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 13l9 5 9-5"/></svg></span>
+        <span>Projects shipped</span><strong>6+</strong><em>Live in production</em>
+      </div>
+      <div class="kpi">
+        <span class="kpi-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span>
+        <span>Servers running</span><strong>24/7</strong><em>Self-hosted, my hardware</em>
+      </div>
+      <div class="kpi">
+        <span class="kpi-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span>
+        <span>Guides published</span><strong>2</strong><em>Win11 + home server</em>
+      </div>
     </section>
 
     <section class="panel featured" id="projects">
       <div class="panel-head">
         <h3>Foxuma</h3>
-        <span class="chip live">● Live — No. 1</span>
+        <span class="chip live"><span class="sdot" aria-hidden="true"></span> Live — No. 1</span>
       </div>
       <p class="featured-sub">A full business platform in one web app: projects, orders, customers, invoicing, payroll support and a built-in AI assistant. Designed, built and maintained by me — and used in daily production by a real shop.</p>
       <div class="mini-app" aria-hidden="true">
@@ -77,12 +121,66 @@
       </div>
     </section>
 
+    <section class="panel reveal" id="services">
+      <div class="panel-head"><h3>What you can hire me for</h3><span class="chip mono">three ways to work with me</span></div>
+      <div class="svc-grid">
+        <article class="svc">
+          <h4>Business platform — Foxuma</h4>
+          <p>Projects, orders, customers, invoicing and payroll support in one web app, with a built-in AI assistant. Your data stays in Canada.</p>
+          <p class="price">From $99/mo · Founding offer: $199/mo flat, up to 10 users</p>
+          <div class="svc-links">
+            <a href="demo/">Try the demo</a>
+            <a href="https://foxuma.com" target="_blank" rel="noopener">foxuma.com</a>
+          </div>
+        </article>
+        <article class="svc">
+          <h4>Premium website</h4>
+          <p>A custom website for your shop or studio — your brand, your photos, your words. Started from a proven studio template, finished like a custom build.</p>
+          <p class="price">Priced by written quote · No setup fee</p>
+          <div class="svc-links">
+            <a href="template-pack/">See the templates</a>
+            <a href="mailto:marksong0000@gmail.com">Ask for a quote</a>
+          </div>
+        </article>
+        <article class="svc">
+          <h4>Home server setup</h4>
+          <p>Your own computer set up as a private server that runs 24/7 — remote access, per-device accounts, automatic recovery if anything stops.</p>
+          <p class="price">One-time setup · Priced by written quote</p>
+          <div class="svc-links">
+            <a href="home-server-guide/">Read the guide</a>
+            <a href="mailto:marksong0000@gmail.com">Ask about setup</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section>
       <div class="section-head">
         <h3>All projects</h3>
         <p>Live statuses — this is the actual state of my work.</p>
       </div>
       <div class="grid" id="projectGrid"></div>
+    </section>
+
+    <section id="systems">
+      <div class="section-head">
+        <h3>Systems I run</h3>
+        <p>Running on my own hardware, checked as I ship.</p>
+      </div>
+      <div class="sys-grid">
+        <article class="sys reveal">
+          <div class="sys-top"><span class="sdot" aria-hidden="true"></span><h4>Foxuma app</h4><span class="sys-st">Live</span></div>
+          <p>The business platform at foxuma.com — in daily production use by a real shop.</p>
+        </article>
+        <article class="sys reveal">
+          <div class="sys-top"><span class="sdot" aria-hidden="true"></span><h4>Home proxy servers</h4><span class="sys-st">Running 24/7</span></div>
+          <p>Private network servers on my home hardware — per-device access, automatic recovery.</p>
+        </article>
+        <article class="sys reveal">
+          <div class="sys-top"><span class="sdot" aria-hidden="true"></span><h4>Mir2 game server</h4><span class="sys-st">Running 24/7</span></div>
+          <p>Legend of Mir 2 (1.76) server I host myself — custom setup, scheduled backups.</p>
+        </article>
+      </div>
     </section>
 
     <section class="panel" id="stack">
@@ -92,6 +190,22 @@
         <div><h4>Web</h4><p>Django · React · Node.js · REST APIs · GitHub Pages</p></div>
         <div><h4>Systems & servers</h4><p>Windows Server services · Linux basics · Xray / Hysteria2 · Tailscale · Game servers</p></div>
         <div><h4>Also</h4><p>AI assistants & automation · SketchUp · AutoCAD · Git / GitHub</p></div>
+      </div>
+    </section>
+
+    <section class="panel reveal" id="guides">
+      <div class="panel-head"><h3>Guides</h3><span class="chip mono">free, public</span></div>
+      <div class="guide-grid">
+        <a class="gcard" href="https://marksong0917.github.io/win11-optimization-guide/" target="_blank" rel="noopener">
+          <h4>Windows 11 Min-Max Guide</h4>
+          <p>Minimal bloat, maximum performance — a clean Windows 11 setup, step by step.</p>
+          <span class="guide-link">Read the guide →</span>
+        </a>
+        <a class="gcard" href="home-server-guide/">
+          <h4>Home Server Guide</h4>
+          <p>Turn an old PC into a 24/7 private server — services, accounts, clients and upkeep.</p>
+          <span class="guide-link">Read the guide →</span>
+        </a>
       </div>
     </section>
 
@@ -106,7 +220,7 @@
     </section>
 
     <section class="panel contact" id="contact">
-      <div class="panel-head"><h3>Contact</h3><span class="chip live">● Fastest by email</span></div>
+      <div class="panel-head"><h3>Contact</h3><span class="chip live"><span class="sdot" aria-hidden="true"></span> Fastest by email</span></div>
       <p>Have a project, a shop that needs a system, or a server to build?</p>
       <div class="actions">
         <a class="btn primary" href="mailto:marksong0000@gmail.com">marksong0000@gmail.com</a>
@@ -118,6 +232,6 @@
   </main>
 </div>
 
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>

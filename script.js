@@ -8,14 +8,17 @@ const projects = [
   { rank: 'No. 5', name: 'Shadowrocket Servers', status: 'Running 24/7', cls: 'running', pct: 100, desc: 'Self-hosted private network servers I built on my own hardware — per-device access, encrypted connections, automatic recovery, runs unattended.', link: '', note: 'Private infrastructure — details on request' },
   { rank: 'No. 6', name: 'Mir2 Game Server', status: 'Running 24/7', cls: 'running', pct: 100, desc: 'A self-hosted Legend of Mir 2 (1.76) online game server I built and run — custom configuration, scheduled backups, steady uptime.', link: '', note: 'Private server — details on request' },
   { rank: 'Demo', name: 'Self-Measure Kit', status: 'Live', cls: 'live', pct: 100, desc: 'Homeowners measure their own kitchen or closet and the shop gets a quote-ready summary. A demo of the add-on I build for shops.', link: 'measure-kit/', linkText: 'Try the Self-Measure Kit' },
+  { rank: 'Demo', name: 'Trade Estimator', status: 'Live', cls: 'live', pct: 100, desc: 'An instant price-range estimator a shop puts on its own website — the customer gets a number in about a minute, the shop gets the lead.', link: 'estimator/', linkText: 'Try the Trade Estimator' },
+  { rank: 'Case study', name: 'Foxuma Case Study', status: 'Live', cls: 'live', pct: 100, desc: 'How one system runs a real cabinet shop day to day — projects, orders, invoicing, payroll hours and inventory in one place.', link: 'case-study/', linkText: 'Read the case study' },
   { rank: 'Guide', name: 'Windows 11 Min-Max Guide', status: 'Published', cls: 'guide', pct: 100, desc: 'My Windows 11 optimization guide, rewritten as a public site: minimal bloat, maximum performance, step by step.', link: 'https://marksong0917.github.io/win11-optimization-guide/', linkText: 'Read the guide' },
 ];
 const grid = document.getElementById('projectGrid');
 projects.forEach((p) => {
   const el = document.createElement('article');
   el.className = 'card reveal';
+  const liveDot = (p.cls === 'live' || p.cls === 'running') ? '<span class="sdot" aria-hidden="true"></span>' : '';
   el.innerHTML = `
-    <div class="card-top"><span class="rank">${p.rank}</span><span class="status ${p.cls}">● ${p.status}</span></div>
+    <div class="card-top"><span class="rank">${p.rank}</span><span class="status ${p.cls}">${liveDot}${p.status}</span></div>
     <h4>${p.name}</h4><p>${p.desc}</p>
     <div class="bar"><i style="width:${p.pct}%"></i></div><p class="pct">${p.pct}%</p>
     ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener">${p.linkText}</a>` : `<p class="note-none">${p.note}</p>`}`;
@@ -24,6 +27,7 @@ projects.forEach((p) => {
 
 // Build log — recent ships
 const log = [
+  ['Oct 28', 'Portfolio v2 — dashboard redesign'],
   ['Oct 28', 'YRWS Template Pack — 3 premium templates (millwork, closets, trades), published'],
   ['Oct 28', 'Self-Measure Kit demo — homeowners measure, shops get a quote-ready summary'],
   ['Oct 28', 'Home Server Guide — turn an old PC into a 24/7 private server, published'],

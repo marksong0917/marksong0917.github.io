@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://marksong0917.github.io/sitemap.xml
