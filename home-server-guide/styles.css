@@ -71,6 +71,17 @@ ul.steps{list-style:disc}
 .res a{font-weight:600;text-decoration:none}
 .res a:hover{text-decoration:underline}
 
+/* Funnel — author CTA */
+.funnel{background:#0d1526;color:#dbe2f0;border-color:#0d1526}
+.funnel h2{color:#fff;margin-bottom:10px}
+.funnel p{max-width:640px;color:#dbe2f0}
+.funnel strong{color:#fff}
+.funnel-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.funnel-btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.95rem;padding:11px 22px;border-radius:999px;border:1px solid #31405f;color:#e8ecf5}
+.funnel-btn:hover{border-color:#72809c}
+.funnel-btn.primary{background:#e85d1f;border-color:#e85d1f;color:#fff}
+.funnel-btn.primary:hover{background:#c74e15}
+
 .foot{margin-top:30px;padding:0 6px}
 .foot p{color:var(--muted);font-size:.86rem;max-width:760px}
 
