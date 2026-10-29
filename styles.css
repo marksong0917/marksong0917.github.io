@@ -120,6 +120,8 @@ a{color:inherit}
 .pct{font-size:.8rem;color:var(--muted)}
 .card a{margin-top:12px;color:#ffab7a;font-weight:600;text-decoration:none;font-size:.92rem;transition:color .2s ease}
 .card a:hover{text-decoration:underline;color:#ffc4a1}
+.card-links{display:flex;gap:10px 18px;flex-wrap:wrap;margin-top:12px}
+.card-links a{margin-top:0}
 .card .note-none{margin-top:12px;color:#7d8fb0;font-size:.88rem;font-weight:600}
 
 /* Services */
@@ -149,8 +151,12 @@ a{color:inherit}
 .gcard:hover{transform:translateY(-3px);border-color:#3d5a8f;box-shadow:0 12px 28px rgba(2,6,18,.4)}
 @media (prefers-reduced-motion:reduce){.gcard{transition:none}.gcard:hover{transform:none}}
 .gcard h4{font-size:1.05rem;margin-bottom:8px}
+.gcard h4 a{text-decoration:none}
+.gcard h4 a:hover{color:#ffc4a1;text-decoration:underline}
 .gcard p{color:var(--muted);font-size:.93rem}
-.guide-link{display:inline-block;margin-top:16px;color:#ffab7a;font-weight:600;font-size:.92rem}
+.guide-links{display:flex;gap:10px 20px;flex-wrap:wrap;margin-top:16px}
+.guide-link{display:inline-block;color:#ffab7a;font-weight:600;font-size:.92rem;text-decoration:none}
+.guide-link:hover{color:#ffc4a1;text-decoration:underline}
 
 /* FAQ accordion */
 .faq-list{display:grid;gap:12px}

@@ -10,8 +10,9 @@ const projects = [
   { rank: 'Demo', name: 'Self-Measure Kit', status: 'Live', cls: 'live', pct: 100, desc: 'Homeowners measure their own kitchen or closet and the shop gets a quote-ready summary. A demo of the add-on I build for shops.', link: 'measure-kit/', linkText: 'Try the Self-Measure Kit' },
   { rank: 'Demo', name: 'Trade Estimator', status: 'Live', cls: 'live', pct: 100, desc: 'An instant price-range estimator a shop puts on its own website — the customer gets a number in about a minute, the shop gets the lead.', link: 'estimator/', linkText: 'Try the Trade Estimator' },
   { rank: 'Case study', name: 'Foxuma Case Study', status: 'Live', cls: 'live', pct: 100, desc: 'How one system runs a real cabinet shop day to day — projects, orders, invoicing, payroll hours and inventory in one place.', link: 'case-study/', linkText: 'Read the case study' },
-  { rank: 'Guide', name: 'Windows 11 Min-Max Guide', status: 'Published', cls: 'guide', pct: 100, desc: 'My Windows 11 optimization guide, rewritten as a public site: minimal bloat, maximum performance, step by step.', link: 'https://marksong0917.github.io/win11-optimization-guide/', linkText: 'Read the guide' },
-  { rank: 'Guide', name: 'Home Server Guide', status: 'Published', cls: 'guide', pct: 100, desc: 'Turn an old PC into a 24/7 private server — services, per-device accounts, clients and upkeep, step by step.', link: 'home-server-guide/', linkText: 'Read the guide' },
+  { rank: 'Open source', name: 'Win11 MinMax Toolkit', status: 'Published', cls: 'guide', pct: 100, desc: 'Safe, reversible Windows 11 tweaks in a PowerShell toolkit. Restore point first, full undo, and a written log of every change.', link: 'https://github.com/marksong0917/win11-minmax-toolkit', linkText: 'View on GitHub' },
+  { rank: 'Guide', name: 'Windows 11, Optimized — the LTSC Way', status: 'Published', cls: 'guide', pct: 100, desc: 'My Windows 11 guide, rewritten as a public site: minimal bloat, maximum performance, step by step.', link: 'https://marksong0917.github.io/win11-optimization-guide/', linkText: 'Read the guide', link2: 'https://marksong0917.github.io/win11-optimization-guide/zh/', link2Text: '中文版' },
+  { rank: 'Guide', name: 'Home Server Guide', status: 'Published', cls: 'guide', pct: 100, desc: 'Turn an old PC into a 24/7 private server — now with one-click setup, plus services, per-device accounts, clients and upkeep.', link: 'home-server-guide/', linkText: 'Read the guide', link2: 'https://marksong0917.github.io/home-server-guide/zh/', link2Text: '中文版' },
 ];
 const grid = document.getElementById('projectGrid');
 projects.forEach((p, i) => {
@@ -23,7 +24,7 @@ projects.forEach((p, i) => {
     <div class="card-top"><span class="rank">${p.rank}</span><span class="status ${p.cls}">${liveDot}${p.status}</span></div>
     <h4>${p.name}</h4><p>${p.desc}</p>
     <div class="bar"><i style="width:${p.pct}%"></i></div><p class="pct">${p.pct}%</p>
-    ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener">${p.linkText}</a>` : `<p class="note-none">${p.note}</p>`}`;
+    ${p.link ? `<div class="card-links"><a href="${p.link}" target="_blank" rel="noopener">${p.linkText}</a>${p.link2 ? `<a href="${p.link2}" target="_blank" rel="noopener">${p.link2Text}</a>` : ''}</div>` : `<p class="note-none">${p.note}</p>`}`;
   grid.appendChild(el);
 });
 
