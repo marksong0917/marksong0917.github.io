@@ -12,9 +12,15 @@
 <meta property="og:description" content="Programmer and builder in Aurora, Ontario. Creator of Foxuma — a full business platform. Premium websites, self-hosted servers, public guides.">
 <meta property="og:url" content="https://marksong0917.github.io/">
 <meta property="og:locale" content="en_CA">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://marksong0917.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ze (Mark) Song — I build software, websites and servers.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ze (Mark) Song — I Build Software, Websites & Servers">
 <meta name="twitter:description" content="Programmer and builder in Aurora, Ontario. Creator of Foxuma. Premium websites, self-hosted servers, public guides.">
+<meta name="twitter:image" content="https://marksong0917.github.io/og.png">
+<meta name="twitter:image:alt" content="Ze (Mark) Song — I build software, websites and servers.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -37,10 +43,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=4">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1526'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='%23ff7a29' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 </head>
 <body>
+
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
 
 <div class="shell">
 
@@ -79,6 +87,7 @@
     </header>
 
     <section class="hero">
+      <p class="kicker">~/overview</p>
       <h2>I build software, websites<br>and servers.</h2>
       <p>Programmer and web developer with about <strong>10 years of industry experience</strong>. Best known for <strong>Foxuma</strong> — the business platform I designed and built end to end. If it runs in a browser or on a server, I can build it.</p>
     </section>
@@ -104,7 +113,7 @@
 
     <section class="panel featured" id="projects">
       <div class="panel-head">
-        <h3>Foxuma</h3>
+        <div class="ph-left"><p class="kicker">~/featured — no. 1</p><h3>Foxuma</h3></div>
         <span class="chip live"><span class="sdot" aria-hidden="true"></span> Live — No. 1</span>
       </div>
       <p class="featured-sub">A full business platform in one web app: projects, orders, customers, invoicing, payroll support and a built-in AI assistant. Designed, built and maintained by me — and used in daily production by a real shop.</p>
@@ -122,7 +131,7 @@
     </section>
 
     <section class="panel reveal" id="services">
-      <div class="panel-head"><h3>What you can hire me for</h3><span class="chip mono">three ways to work with me</span></div>
+      <div class="panel-head"><div class="ph-left"><p class="kicker">~/services</p><h3>What you can hire me for</h3></div><span class="chip mono">three ways to work with me</span></div>
       <div class="svc-grid">
         <article class="svc">
           <h4>Business platform — Foxuma</h4>
@@ -156,6 +165,7 @@
 
     <section>
       <div class="section-head">
+        <p class="kicker">~/projects</p>
         <h3>All projects</h3>
         <p>Live statuses — this is the actual state of my work.</p>
       </div>
@@ -164,6 +174,7 @@
 
     <section id="systems">
       <div class="section-head">
+        <p class="kicker">~/systems</p>
         <h3>Systems I run</h3>
         <p>Running on my own hardware, checked as I ship.</p>
       </div>
@@ -184,7 +195,7 @@
     </section>
 
     <section class="panel" id="stack">
-      <div class="panel-head"><h3>Tech stack</h3><span class="chip mono">what I build with</span></div>
+      <div class="panel-head"><div class="ph-left"><p class="kicker">~/tech-stack</p><h3>Tech stack</h3></div><span class="chip mono">what I build with</span></div>
       <div class="stack-cols">
         <div><h4>Languages</h4><p>Python · JavaScript · HTML / CSS · Java · C# · C</p></div>
         <div><h4>Web</h4><p>Django · React · Node.js · REST APIs · GitHub Pages</p></div>
@@ -194,7 +205,7 @@
     </section>
 
     <section class="panel reveal" id="guides">
-      <div class="panel-head"><h3>Guides</h3><span class="chip mono">free, public</span></div>
+      <div class="panel-head"><div class="ph-left"><p class="kicker">~/guides</p><h3>Guides</h3></div><span class="chip mono">free, public</span></div>
       <div class="guide-grid">
         <a class="gcard" href="https://marksong0917.github.io/win11-optimization-guide/" target="_blank" rel="noopener">
           <h4>Windows 11 Min-Max Guide</h4>
@@ -210,17 +221,17 @@
     </section>
 
     <section class="panel" id="log">
-      <div class="panel-head"><h3>Build log</h3><span class="chip mono">recently shipped</span></div>
+      <div class="panel-head"><div class="ph-left"><p class="kicker">~/build-log</p><h3>Build log</h3></div><span class="chip mono">recently shipped</span></div>
       <ul class="log" id="buildLog"></ul>
     </section>
 
     <section class="panel" id="about">
-      <div class="panel-head"><h3>About me</h3></div>
+      <div class="panel-head"><div class="ph-left"><p class="kicker">~/about</p><h3>About me</h3></div></div>
       <p class="about-text">I'm Ze (Mark) Song, based in <strong>Aurora, Ontario, Canada</strong>. I'm best known for <strong>Foxuma</strong>, the business platform I built from the ground up. My proven work also includes the Newood Millwork and Havenwest Closets websites, my studio York Region Web Studio, public guides (Windows 11 optimization, home servers), and infrastructure I run myself — private network servers and an online game server. I like clean systems: minimal, fast, and built to run unattended.</p>
     </section>
 
     <section class="panel contact" id="contact">
-      <div class="panel-head"><h3>Contact</h3><span class="chip live"><span class="sdot" aria-hidden="true"></span> Fastest by email</span></div>
+      <div class="panel-head"><div class="ph-left"><p class="kicker">~/contact</p><h3>Contact</h3></div><span class="chip live"><span class="sdot" aria-hidden="true"></span> Fastest by email</span></div>
       <p>Have a project, a shop that needs a system, or a server to build?</p>
       <div class="actions">
         <a class="btn primary" href="mailto:marksong0000@gmail.com">marksong0000@gmail.com</a>
@@ -232,6 +243,6 @@
   </main>
 </div>
 
-<script src="script.js?v=6"></script>
+<script src="script.js?v=7"></script>
 </body>
 </html>

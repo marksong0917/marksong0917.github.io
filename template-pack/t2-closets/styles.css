@@ -46,7 +46,9 @@ blockquote cite{display:block;font-family:'Jost',sans-serif;font-style:normal;fo
 .footer{border-top:1px solid var(--line);margin-top:16px;text-align:center}
 .footer p{padding:6px 24px;color:var(--muted);font-size:.92rem}
 .footer p:first-child{padding-top:28px}
-.template-note{padding-bottom:28px;font-size:.82rem;color:#bdb5a4}
+.template-note{padding-bottom:0;font-size:.82rem;color:#bdb5a4}
+.builder-note{padding-bottom:28px;font-size:.82rem;color:#bdb5a4}
+.builder-note a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:860px){
   .hero{padding:44px 0 52px}
   .services,.quotes{grid-template-columns:1fr}

@@ -51,6 +51,8 @@ blockquote cite{display:block;font-style:normal;font-size:.9rem;color:var(--mute
 .footer{padding:28px 0 34px}
 .footer p{max-width:1160px;margin:0 auto;padding:4px 24px;color:var(--muted);font-size:.9rem}
 .template-note{font-size:.82rem;color:#5f707d}
+.builder-note{font-size:.82rem;color:#5f707d}
+.builder-note a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:860px){
   .contact .btn{max-width:100%;font-size:.84rem;padding:14px 16px;word-break:break-all;text-align:center}
   .hero{padding:44px 0 52px}

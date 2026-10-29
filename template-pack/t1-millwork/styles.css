@@ -47,7 +47,9 @@ blockquote cite{display:block;font-family:'Inter',sans-serif;font-style:normal;f
 .footer{border-top:1px solid var(--line);margin-top:20px}
 .footer p{max-width:1140px;margin:0 auto;padding:8px 24px;color:var(--muted);font-size:.9rem}
 .footer p:first-child{padding-top:26px}
-.template-note{padding-bottom:26px;font-size:.82rem;color:#a39789}
+.template-note{padding-bottom:0;font-size:.82rem;color:#a39789}
+.builder-note{padding-bottom:26px;font-size:.82rem;color:#a39789}
+.builder-note a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:860px){
   .hero{grid-template-columns:1fr;padding:36px 0 48px}
   .hero-panel{min-height:280px}

@@ -89,6 +89,7 @@ input[type="range"]{width:100%;height:44px;accent-color:var(--accent);cursor:poi
 .owner-links a:last-child{background:#fff;color:var(--ink);border:1px solid var(--line)}
 
 .foot{margin-top:26px;color:var(--muted);font-size:.85rem;text-align:center}
+.foot a{color:var(--accent);font-weight:600;text-decoration:none}
 
 @media (max-width:560px){
   .cards-3{grid-template-columns:1fr}

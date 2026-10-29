@@ -13,9 +13,10 @@ const projects = [
   { rank: 'Guide', name: 'Windows 11 Min-Max Guide', status: 'Published', cls: 'guide', pct: 100, desc: 'My Windows 11 optimization guide, rewritten as a public site: minimal bloat, maximum performance, step by step.', link: 'https://marksong0917.github.io/win11-optimization-guide/', linkText: 'Read the guide' },
 ];
 const grid = document.getElementById('projectGrid');
-projects.forEach((p) => {
+projects.forEach((p, i) => {
   const el = document.createElement('article');
   el.className = 'card reveal';
+  el.style.transitionDelay = Math.min(i, 6) * 70 + 'ms'; // cascade the grid in; cleared after reveal so hover stays snappy
   const liveDot = (p.cls === 'live' || p.cls === 'running') ? '<span class="sdot" aria-hidden="true"></span>' : '';
   el.innerHTML = `
     <div class="card-top"><span class="rank">${p.rank}</span><span class="status ${p.cls}">${liveDot}${p.status}</span></div>
@@ -48,6 +49,64 @@ log.forEach(([t, s]) => {
 // Reveal on scroll
 const items = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window) {
-  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.1 });
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+      setTimeout(() => { e.target.style.transitionDelay = ''; }, 950);
+    }
+  }), { threshold: 0.1 });
   items.forEach((el) => io.observe(el));
-} else { items.forEach((el) => el.classList.add('in')); }
+} else { items.forEach((el) => { el.classList.add('in'); el.style.transitionDelay = ''; }); }
+
+// Scroll progress bar
+const progressFill = document.querySelector('.scroll-progress i');
+if (progressFill) {
+  let ticking = false;
+  const paint = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+    progressFill.style.transform = 'scaleX(' + ratio + ')';
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, { passive: true });
+  window.addEventListener('resize', paint);
+  paint();
+}
+
+// Active nav link follows the scroll position
+const navLinks = Array.from(document.querySelectorAll('.side-nav a'));
+const spyTargets = [
+  ['overview', document.querySelector('.hero')],
+  ['projects', document.getElementById('projects')],
+  ['services', document.getElementById('services')],
+  ['systems', document.getElementById('systems')],
+  ['stack', document.getElementById('stack')],
+  ['guides', document.getElementById('guides')],
+  ['log', document.getElementById('log')],
+  ['about', document.getElementById('about')],
+  ['contact', document.getElementById('contact')],
+].filter(([, el]) => el);
+if ('IntersectionObserver' in window && navLinks.length) {
+  const visible = new Set();
+  const spy = new IntersectionObserver((es) => {
+    es.forEach((e) => {
+      const id = e.target.getAttribute('data-spy');
+      if (e.isIntersecting) { visible.add(id); } else { visible.delete(id); }
+    });
+    if (!visible.size) { return; }
+    let current = null;
+    spyTargets.forEach(([id]) => { if (visible.has(id)) { current = id; } });
+    if (current) {
+      navLinks.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + current));
+    }
+  }, { rootMargin: '-25% 0px -60% 0px', threshold: 0 });
+  spyTargets.forEach(([id, el]) => { el.setAttribute('data-spy', id); spy.observe(el); });
+  // At the very bottom the last section wins (it can sit below the spy band)
+  const lastId = spyTargets[spyTargets.length - 1][0];
+  window.addEventListener('scroll', () => {
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+      navLinks.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + lastId));
+    }
+  }, { passive: true });
+}
