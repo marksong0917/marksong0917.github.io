@@ -79,3 +79,8 @@ tbody tr:hover{background:#fafbfe}
 }
 
 .main h2{font-size:1.8rem;letter-spacing:-.02em;margin:0 0 6px}
+.demo-cta{margin-top:22px;background:#0d1526;color:#e8edf6;border-radius:16px;padding:22px 24px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.demo-cta p{margin:0;font-size:.98rem;max-width:520px}
+.demo-cta-links{display:flex;gap:10px;flex-wrap:wrap}
+.demo-cta .btn-dark{background:#e85d1f;color:#fff;font-weight:700;padding:11px 18px;border-radius:10px;text-decoration:none}
+.demo-cta .btn-line{border:1px solid #3a4a6b;color:#e8edf6;font-weight:600;padding:11px 18px;border-radius:10px;text-decoration:none}

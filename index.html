@@ -43,10 +43,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1526'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='%23ff7a29' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 </head>
 <body>
+
+<a class="skip-link" href="#overview">Skip to content</a>
 
 <div class="scroll-progress" aria-hidden="true"><i></i></div>
 
@@ -67,6 +69,7 @@
       <a href="#systems">Systems I run</a>
       <a href="#stack">Tech stack</a>
       <a href="#guides">Guides</a>
+      <a href="#faq">FAQ</a>
       <a href="#log">Build log</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
@@ -79,7 +82,7 @@
     <p class="side-foot">This page is a live dashboard.<br>Statuses update as I ship.</p>
   </aside>
 
-  <main class="main" id="overview">
+  <main class="main" id="overview" tabindex="-1">
 
     <header class="topbar">
       <p class="crumb">~/mark-song <span>— portfolio, live</span></p>
@@ -220,6 +223,32 @@
       </div>
     </section>
 
+    <section class="panel reveal" id="faq">
+      <div class="panel-head"><div class="ph-left"><p class="kicker">~/faq</p><h3>FAQ</h3></div><span class="chip mono">quick answers</span></div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What does Foxuma cost?</summary>
+          <div class="faq-body"><p>$99/month for the first user, $19 per added user (users 2–10), $9 after the 10th. No setup fee. Founding offer: $199/month flat for up to 10 users, locked for 2 years.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Where does my data live?</summary>
+          <div class="faq-body"><p>In Canada, on Foxuma's own servers. Your shop's records are not sold or shared.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I try it first?</summary>
+          <div class="faq-body"><p>Yes — <a href="demo/">the live demo on this page</a> uses sample data. Play with every screen, no sign-up.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What does a website cost?</summary>
+          <div class="faq-body"><p>Every site is priced by written quote — no setup fee, no surprises after. Start from <a href="template-pack/">a template in the pack</a> and it is finished as a custom build.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How do we start?</summary>
+          <div class="faq-body"><p>Email me. One address, no forms that vanish: <a href="mailto:marksong0000@gmail.com">marksong0000@gmail.com</a>. Tell me what your shop runs on today.</p></div>
+        </details>
+      </div>
+    </section>
+
     <section class="panel" id="log">
       <div class="panel-head"><div class="ph-left"><p class="kicker">~/build-log</p><h3>Build log</h3></div><span class="chip mono">recently shipped</span></div>
       <ul class="log" id="buildLog"></ul>
@@ -261,6 +290,6 @@
   </main>
 </div>
 
-<script src="script.js?v=9"></script>
+<script src="script.js?v=10"></script>
 </body>
 </html>

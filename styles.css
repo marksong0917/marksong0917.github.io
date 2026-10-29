@@ -13,6 +13,11 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--i
 ::-webkit-scrollbar-thumb{background:#223354;border-radius:99px;border:2px solid var(--bg)}
 ::-webkit-scrollbar-thumb:hover{background:#3d5a8f}
 
+/* Skip link — visually hidden until it receives keyboard focus */
+.skip-link{position:fixed;top:12px;left:12px;z-index:100;background:var(--accent);color:#fff;font-weight:600;text-decoration:none;padding:11px 20px;border-radius:999px;transform:translateY(-300%);transition:transform .2s ease}
+.skip-link:focus{transform:none}
+@media (prefers-reduced-motion:reduce){.skip-link{transition:none}}
+
 /* Scroll progress */
 .scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;background:transparent;pointer-events:none}
 .scroll-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transform-origin:0 50%;transform:scaleX(0)}
@@ -56,6 +61,7 @@ a{color:inherit}
 .top-cta:hover{background:#c74e15}
 .hero{position:relative;isolation:isolate;padding-top:8px}
 .hero::before{content:"";position:absolute;z-index:-1;top:-110px;left:-140px;width:760px;max-width:95vw;height:430px;background:radial-gradient(closest-side,rgba(232,93,31,.11),rgba(232,93,31,.04) 55%,transparent 78%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(147,161,189,.12) 1px,transparent 1.5px);background-size:22px 22px;-webkit-mask-image:linear-gradient(180deg,#000 45%,transparent 98%);mask-image:linear-gradient(180deg,#000 45%,transparent 98%);pointer-events:none}
 .hero h2{font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.08;letter-spacing:-.035em}
 .hero p{color:var(--muted);font-size:1.08rem;max-width:640px;margin-top:16px}
 .hero p strong{color:var(--ink)}
@@ -146,15 +152,32 @@ a{color:inherit}
 .gcard p{color:var(--muted);font-size:.93rem}
 .guide-link{display:inline-block;margin-top:16px;color:#ffab7a;font-weight:600;font-size:.92rem}
 
+/* FAQ accordion */
+.faq-list{display:grid;gap:12px}
+.faq-item{background:var(--panel2);border:1px solid var(--line);border-radius:14px;transition:border-color .2s ease}
+.faq-item:hover{border-color:#3d5a8f}
+.faq-item[open]{border-color:#3d5a8f}
+.faq-item summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;padding:16px 20px;font-family:'Sora',sans-serif;font-weight:600;font-size:1rem;color:var(--ink)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+.faq-item summary::after{content:"+";margin-left:auto;color:#ffab7a;font-weight:600;font-size:1.3rem;line-height:1;transition:transform .25s ease}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+@media (prefers-reduced-motion:reduce){.faq-item summary::after{transition:none}}
+.faq-body{padding:0 20px 18px 40px;color:var(--muted);font-size:.95rem}
+.faq-body a{color:#ffab7a;font-weight:600;text-decoration:none;transition:color .2s ease}
+.faq-body a:hover{text-decoration:underline;color:#ffc4a1}
+
 /* Stack + log */
 .stack-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px 32px}
 .stack-cols h4{color:#ffab7a;font-size:.95rem;margin-bottom:4px}
 .stack-cols p{color:#c6cede;font-size:.96rem}
-.log{list-style:none;display:grid}
-.log li{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.log li:last-child{border-bottom:0}
-.log time{font-family:'JetBrains Mono',monospace;color:#7fe0ab;font-size:.84rem;white-space:nowrap}
-.log span{color:#c6cede;font-size:.96rem}
+/* Build log — vertical timeline: thin rail, dot per entry, mono date chip */
+.log{list-style:none;position:relative;display:grid}
+.log::before{content:"";position:absolute;left:6px;top:14px;bottom:14px;width:2px;border-radius:2px;background:linear-gradient(180deg,rgba(232,93,31,.6),var(--line) 32%,var(--line))}
+.log li{position:relative;display:flex;gap:16px;padding:11px 0 11px 30px;align-items:baseline}
+.log .tl-dot{position:absolute;left:2px;top:16px;width:10px;height:10px;border-radius:50%;background:var(--panel);border:2px solid var(--accent2);flex:none}
+.log time{font-family:'JetBrains Mono',monospace;color:#7fe0ab;font-size:.8rem;white-space:nowrap;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.log li>span:last-child{color:#c6cede;font-size:.96rem}
 .about-text{color:#c6cede;max-width:760px}
 .about-text strong{color:#fff}
 .contact p{color:#c6cede;margin-bottom:16px}

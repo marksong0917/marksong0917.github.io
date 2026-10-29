@@ -45,7 +45,7 @@ const log = [
 const ul = document.getElementById('buildLog');
 log.forEach(([t, s]) => {
   const li = document.createElement('li');
-  li.innerHTML = `<time>${t}</time><span>${s}</span>`;
+  li.innerHTML = `<span class="tl-dot" aria-hidden="true"></span><time>${t}</time><span>${s}</span>`;
   ul.appendChild(li);
 });
 
@@ -86,6 +86,7 @@ const spyTargets = [
   ['systems', document.getElementById('systems')],
   ['stack', document.getElementById('stack')],
   ['guides', document.getElementById('guides')],
+  ['faq', document.getElementById('faq')],
   ['log', document.getElementById('log')],
   ['about', document.getElementById('about')],
   ['contact', document.getElementById('contact')],
