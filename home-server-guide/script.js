@@ -29,3 +29,21 @@ if ('IntersectionObserver' in window) {
   }, { rootMargin: '-30% 0px -60% 0px' });
   document.querySelectorAll('main section[id]').forEach((s) => io.observe(s));
 }
+
+// Scroll progress bar + back-to-top button
+const scrollBar = document.querySelector('.scroll-progress');
+const toTopBtn = document.getElementById('toTop');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function onScroll() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const y = window.scrollY || 0;
+  if (scrollBar) scrollBar.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + '%';
+  if (toTopBtn) toTopBtn.classList.toggle('show', y > 600);
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+if (toTopBtn) {
+  toTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+}

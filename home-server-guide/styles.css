@@ -101,3 +101,11 @@ ul.steps{list-style:disc}
 }
 
 h1,h2,h3{font-family:'Sora','Inter',sans-serif}
+
+/* UX parity: scroll progress, back-to-top, updated line */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:#e85d1f;z-index:1000}
+.updated{margin-top:16px;color:var(--muted);font-size:.86rem}
+.to-top{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:50%;border:none;background:#0d1526;color:#fff;font-size:1.25rem;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(13,21,38,.3);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease,visibility .25s;display:flex;align-items:center;justify-content:center;z-index:999}
+.to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.to-top:hover{background:#1d2c49}
+@media (prefers-reduced-motion:reduce){.to-top{transition:none;transform:none}}

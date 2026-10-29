@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <meta name="description" content="Step by step: turn an old PC or mini PC into your own always-on private proxy and remote-access server with Xray (VLESS + REALITY) and Hysteria2. Per-device accounts, auto-start services, a watchdog, and no monthly VPN bill.">
-<link rel="stylesheet" href="styles.css?v=1">
+<link rel="stylesheet" href="styles.css?v=2">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1526'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='%23ff7a29' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 <link rel="canonical" href="https://marksong0917.github.io/home-server-guide/">
 <meta property="og:type" content="website">
@@ -19,6 +19,7 @@
 <meta property="og:image" content="https://marksong0917.github.io/og.png">
 </head>
 <body>
+<div class="scroll-progress" aria-hidden="true"></div>
 
 <div class="layout">
 
@@ -50,6 +51,7 @@
         <span>Running cost: $0/month</span>
         <span>Hardware: any old PC</span>
       </div>
+      <p class="updated">Last updated: October 2026</p>
     </header>
 
     <section id="what">
@@ -285,6 +287,8 @@ $ip = (Invoke-RestMethod "https://api.ipify.org")
   </main>
 </div>
 
-<script src="script.js?v=1"></script>
+<button type="button" class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
+
+<script src="script.js?v=2"></script>
 </body>
 </html>
