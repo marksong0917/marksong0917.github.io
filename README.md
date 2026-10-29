@@ -1,6 +1,6 @@
-# Mark Song — Portfolio
+# Mark Song — Portfolio (dashboard style)
 
-Short one-page portfolio for Ze (Mark) Song, programmer & web developer in Aurora, Ontario, Canada.
+Ze (Mark) Song's portfolio as a live dashboard: sidebar identity card, KPI strip, Foxuma featured, all projects with live status + progress, tech stack, build log, about, contact. One page — portfolio and personal dashboard in one. Sub-pages: /demo/ (Foxuma demo), /measure-kit/ (Self-Measure Kit demo).
 
 Showcase order: 1. Foxuma · 2. Newood Millwork · 3. York Region Web Studio · 4. Havenwest Closets · 5. Shadowrocket Servers (private infrastructure, no public link) · 6. Mir2 Game Server (private, no public link).
 
