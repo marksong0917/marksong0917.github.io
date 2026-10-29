@@ -27,6 +27,8 @@ projects.forEach((p) => {
 
 // Build log — recent ships
 const log = [
+  ['Oct 28', 'Foxuma case study — one system runs this shop, published'],
+  ['Oct 28', 'Trade Estimator demo — instant price range, then the lead'],
   ['Oct 28', 'Portfolio v2 — dashboard redesign'],
   ['Oct 28', 'YRWS Template Pack — 3 premium templates (millwork, closets, trades), published'],
   ['Oct 28', 'Self-Measure Kit demo — homeowners measure, shops get a quote-ready summary'],
