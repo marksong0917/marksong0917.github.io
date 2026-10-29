@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turn Your Old PC Into a 24/7 Home Server — Your Own Private Proxy Server</title>
+<meta name="description" content="Step by step: turn an old PC or mini PC into your own always-on private proxy and remote-access server with Xray (VLESS + REALITY) and Hysteria2. Per-device accounts, auto-start services, a watchdog, and no monthly VPN bill.">
+<link rel="stylesheet" href="styles.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2040'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='26' font-weight='700' fill='%237dd3fc' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <a class="logo" href="#top">Home <span>Server</span> Guide</a>
+    <p class="logo-sub">Your old PC.<br>Your own server.<br>Always on, always yours.</p>
+    <nav class="side-nav" aria-label="Sections">
+      <a href="#what">1. What this is</a>
+      <a href="#need">2. What you need</a>
+      <a href="#services">3. The two services</a>
+      <a href="#install">4. Install as real services</a>
+      <a href="#accounts">5. Per-device accounts</a>
+      <a href="#clients">6. Clients</a>
+      <a href="#watchdog">7. Watchdog &amp; upkeep</a>
+      <a href="#security">8. Security rules</a>
+      <a href="#honest">9. Honest notes</a>
+      <a href="#resources">Resources</a>
+    </nav>
+    <p class="side-foot">By Ze (Mark) Song<br>Written from a real setup, running at home right now.</p>
+  </aside>
+
+  <main class="content" id="top">
+
+    <header class="hero">
+      <h1>Turn Your Old PC Into a 24/7 Home Server</h1>
+      <p class="hero-tag">An old laptop or mini PC in a corner becomes your own private proxy and remote-access server: your own exit point on the road, a way back into your home network, and open internet while you travel — with no monthly VPN bill and no third party logging you.</p>
+      <div class="hero-meta">
+        <span>Time: one evening</span>
+        <span>Running cost: $0/month</span>
+        <span>Hardware: any old PC</span>
+      </div>
+    </header>
+
+    <section id="what">
+      <h2>1. What this is, and why</h2>
+      <p>Most people pay a VPN company every month to borrow someone else's server. If you have an old PC at home, you can run your own server instead — on your own internet connection, under your own control.</p>
+      <ul class="steps">
+        <li><strong>Your own exit point.</strong> Connect from a hotel, an airport, or a coffee shop, and your traffic comes out of your own home connection — your home IP, your home country, your streaming and banking just work.</li>
+        <li><strong>Open internet while travelling.</strong> In places where the network is heavily filtered — hotel Wi-Fi with half the web blocked, or countries such as China or Russia where many everyday sites and apps do not load — your connection home is your way through.</li>
+        <li><strong>Access to your home network.</strong> Reach your files, your other machines, and your home services as if you were sitting on your own couch.</li>
+        <li><strong>Private by design.</strong> No VPN company in the middle, no account, no logs but your own. The only person on this server is you.</li>
+        <li><strong>Cheap to run.</strong> An old laptop or mini PC is more than fast enough, sips power, and runs headless — no screen, no keyboard, nobody ever logs in.</li>
+      </ul>
+      <div class="note"><strong>The setup in one line:</strong> two small open-source tools — <strong>Xray</strong> and <strong>Hysteria2</strong> — installed as auto-start services on an always-on PC at home, with a separate account for each of your devices.</div>
+    </section>
+
+    <section id="need">
+      <h2>2. What you need</h2>
+      <ul class="steps">
+        <li><strong>An old PC.</strong> A mini PC or an old laptop is ideal. Almost any machine from the last ten years works — the job is light. Windows or Linux, either is fine. This guide shows Windows first (that is what the reference build runs), with the Linux equivalent where it differs.</li>
+        <li><strong>Home internet.</strong> Upload speed is what matters: your traffic home is limited by your home upload, so 20&nbsp;Mbps up or more feels good.</li>
+        <li><strong>A way to reach home.</strong> Most home IPs change from time to time, so either set up a free DDNS name (for example DuckDNS) that always points at your current home IP, or use your router's built-in DDNS. You also need two things in your router: an <strong>IP reservation</strong> so the server always keeps the same local address, and a <strong>port forward</strong> for port 443 (TCP and UDP) to that address.</li>
+        <li><strong>One evening.</strong> About 1–2 hours, most of it waiting for downloads.</li>
+      </ul>
+      <div class="note warn"><strong>One setting on the PC itself:</strong> in Windows power settings, set sleep to <em>Never</em> on AC power. A server that naps is not a server. On a laptop, also set "close lid: do nothing" while plugged in.</div>
+    </section>
+
+    <section id="services">
+      <h2>3. The two services</h2>
+      <p>You run two protocols side by side, because no single one is best in every condition. Together they cover each other's weak spots.</p>
+      <h3>Xray — VLESS + REALITY (TCP 443) — the daily driver</h3>
+      <p>Xray is the engine; VLESS is the protocol; REALITY is the disguise. REALITY makes your traffic look like an ordinary HTTPS visit to a real, well-known website, which makes it very hard to spot or block. It runs on TCP 443 — the same port as every secure website — so it passes almost everywhere. This is the line you use day to day: the steadiest and the hardest to detect.</p>
+      <h3>Hysteria2 (UDP 443, with obfuscation) — the fast lane</h3>
+      <p>Hysteria2 is built on QUIC/UDP and is designed for bad routes: congested evening peak hours, long international paths, lossy hotel Wi-Fi. Where TCP slows to a crawl, Hysteria2 often stays fast. It adds an obfuscation layer so the traffic does not look like a plain proxy protocol. This is the line you switch to when the daily driver feels slow.</p>
+      <div class="note"><strong>The pick rule:</strong> default to REALITY. Video buffering, evening peak hours (roughly 8–11&nbsp;pm), or REALITY suddenly slow → switch to Hysteria2. Both down at once almost always means the problem is at home — a power cut or the internet line — not the server.</div>
+      <h3>The shape of the configs</h3>
+      <p>Both configs are small. These are simplified templates — every private value is a placeholder you replace with your own (Section 5 explains where each value comes from). The full option reference lives in each project's documentation, linked in Resources.</p>
+      <p>Xray, <code>config.json</code>:</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>{
+  "inbounds": [{
+    "port": 443,
+    "protocol": "vless",
+    "settings": {
+      "clients": [
+        { "id": "&lt;phone-uuid&gt;",  "flow": "xtls-rprx-vision" },
+        { "id": "&lt;laptop-uuid&gt;", "flow": "xtls-rprx-vision" }
+      ],
+      "decryption": "none"
+    },
+    "streamSettings": {
+      "network": "tcp",
+      "security": "reality",
+      "realitySettings": {
+        "dest": "&lt;camouflage-site&gt;:443",
+        "serverNames": ["&lt;camouflage-site&gt;"],
+        "privateKey": "&lt;your-reality-private-key&gt;",
+        "shortIds": ["&lt;your-short-id&gt;"]
+      }
+    }
+  }],
+  "outbounds": [{ "protocol": "freedom" }]
+}</code></pre></div>
+      <p>Hysteria2, <code>config.yaml</code>:</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>listen: :443
+
+tls:
+  cert: &lt;path-to-your-certificate&gt;
+  key: &lt;path-to-your-certificate-key&gt;
+
+obfs:
+  type: salamander
+  salamander:
+    password: &lt;your-obfs-password&gt;
+
+auth:
+  type: userpass
+  userpass:
+    phone: &lt;phone-password&gt;
+    laptop: &lt;laptop-password&gt;
+
+masquerade:
+  type: proxy
+  proxy:
+    url: https://&lt;a-normal-website&gt;
+    rewriteHost: true</code></pre></div>
+      <p>Generate your own keys on the server — never copy keys from any guide, including this one:</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>xray uuid        # one fresh UUID per device
+xray x25519      # your REALITY key pair (private stays on the server)</code></pre></div>
+    </section>
+
+    <section id="install">
+      <h2>4. Install as real services</h2>
+      <p>This is the step that makes the setup "24/7" instead of "works while I'm logged in". Both tools run as proper operating-system services: they start at boot with no logon, restart themselves if they crash, and come back on their own after a power cut.</p>
+      <h3>Windows — wrap each tool with WinSW</h3>
+      <ol class="steps">
+        <li>Download Xray and Hysteria2 from their official releases (Resources) into a folder such as <code>C:\Server\</code>, with their config files beside them.</li>
+        <li>Download WinSW and place a copy next to each tool, renamed to match a small XML file. One XML per service:</li>
+      </ol>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>&lt;service&gt;
+  &lt;id&gt;HomeXray&lt;/id&gt;
+  &lt;name&gt;Home Xray&lt;/name&gt;
+  &lt;executable&gt;C:\Server\xray\xray.exe&lt;/executable&gt;
+  &lt;arguments&gt;run -c C:\Server\xray\config.json&lt;/arguments&gt;
+  &lt;startmode&gt;Automatic&lt;/startmode&gt;
+  &lt;onfailure action="restart" delay="10 sec" /&gt;
+&lt;/service&gt;</code></pre></div>
+      <ol class="steps" start="3">
+        <li>Install each service from an admin terminal (<code>HomeXray.exe install</code>, then <code>start</code>), and do the same for Hysteria2. Set both services to <strong>Automatic</strong> start with <strong>restart on failure</strong> in the Services panel as a second layer.</li>
+        <li>Allow each program through Windows Firewall — per-app rules, inbound, and nothing wider:</li>
+      </ol>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>New-NetFirewallRule -DisplayName "Xray 443 TCP" -Direction Inbound -Program "C:\Server\xray\xray.exe" -Action Allow
+New-NetFirewallRule -DisplayName "Hysteria2 443 UDP" -Direction Inbound -Program "C:\Server\hysteria\hysteria.exe" -Protocol UDP -Action Allow</code></pre></div>
+      <ol class="steps" start="5">
+        <li>In the router: reserve the server's local IP, then forward <strong>TCP 443</strong> and <strong>UDP 443</strong> to it. That is the only door you open.</li>
+        <li><strong>Power-cut proofing:</strong> in the PC's BIOS, set <em>Restore on AC Power Loss</em> to <em>Power On</em>. Now a blackout fixes itself: power returns → PC boots → services start → you are back online, nobody home required.</li>
+      </ol>
+      <h3>Linux — the same idea with systemd</h3>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>[Unit]
+Description=Home Xray
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/xray run -c /etc/xray/config.json
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target</code></pre></div>
+      <p>Save it as <code>/etc/systemd/system/xray.service</code>, then <code>systemctl enable --now xray</code>. Repeat for Hysteria2, and open only 443 TCP/UDP in your firewall.</p>
+    </section>
+
+    <section id="accounts">
+      <h2>5. Per-device accounts</h2>
+      <p>Every device gets its <strong>own</strong> credential: one UUID (Xray) and one password (Hysteria2) for your phone, a different pair for your laptop, another for a family member. It takes two extra minutes at setup and pays off the first time something goes wrong:</p>
+      <ul class="steps">
+        <li><strong>Revoke one, keep the rest.</strong> Phone lost or replaced? Delete that one account. Every other device keeps working, untouched.</li>
+        <li><strong>See what is what.</strong> Each account has a name, so the config reads like a list of your devices, not a pile of random strings.</li>
+        <li><strong>Never share an account between people.</strong> If you want to give someone access, make them their own account (Section 8).</li>
+      </ul>
+      <p>With two protocols and two devices you end up with four lines — phone-REALITY, phone-HY2, laptop-REALITY, laptop-HY2. That is the whole system.</p>
+    </section>
+
+    <section id="clients">
+      <h2>6. Clients</h2>
+      <p>On your devices you use a small free client app. The server address, keys and passwords are packed into a <strong>share link</strong> (or its QR code) that each tool can generate from your config — you import it once and tap to connect.</p>
+      <ul class="steps">
+        <li><strong>iPhone / iPad:</strong> Shadowrocket (App Store). Add a node by scanning the QR code or pasting the link.</li>
+        <li><strong>Android:</strong> v2rayNG (free, open source). Import from clipboard or QR.</li>
+        <li><strong>Windows:</strong> v2rayN (free, open source). Copy the link, import from clipboard, pick the node, turn on the system proxy.</li>
+      </ul>
+      <p>A share link looks like this — note that every value in it is a key:</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>vless://&lt;uuid&gt;@&lt;your-server-address&gt;:443?security=reality&amp;sni=&lt;camouflage-site&gt;&amp;pbk=&lt;your-reality-public-key&gt;&amp;sid=&lt;your-short-id&gt;&amp;flow=xtls-rprx-vision#Phone</code></pre></div>
+      <div class="note warn"><strong>Treat a share link like a house key.</strong> Anyone who has it can use your home connection as if they were you. Send it only to yourself and your own devices, store it in a password manager, and never post a link or a QR code anywhere public — not in a screenshot, not in a forum post asking for help. If one leaks, change that device's UUID and password and re-import; the leak is dead in a minute.</div>
+      <p><strong>Check it works:</strong> connect, then open any "what is my IP" site. It should show your home city and your home provider. Disconnect and it goes back to the local network — that difference is the proof.</p>
+    </section>
+
+    <section id="watchdog">
+      <h2>7. Watchdog &amp; upkeep</h2>
+      <p>An always-on server should look after itself. A tiny scheduled check does three jobs: restart a service that stopped, notice when your public IP changes, and leave a log so future-you can see what happened.</p>
+      <h3>The watchdog (Windows sketch)</h3>
+      <p>A scheduled task every 10 minutes, plus one a couple of minutes after boot, running a script along these lines:</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>$log = "C:\Server\logs\watchdog.log"
+foreach ($name in "HomeXray", "HomeHy2") {
+  if ((Get-Service $name).Status -ne "Running") {
+    Start-Service $name
+    "$(Get-Date -Format s) restarted $name" | Add-Content $log
+  }
+}
+# Once in a while, note the public IP so a change is easy to spot
+$ip = (Invoke-RestMethod "https://api.ipify.org")
+"$(Get-Date -Format s) public IP: $ip" | Add-Content $log</code></pre></div>
+      <p>On Linux the same job is a cron line or a systemd timer running <code>systemctl is-active</code> checks — and honestly, systemd's <code>Restart=on-failure</code> already does most of it.</p>
+      <h3>Upkeep, once in a while</h3>
+      <ul class="steps">
+        <li><strong>Update in place.</strong> Every month or two, drop in the new Xray and Hysteria2 releases and restart the services. Keep the previous version's folder until the new one has run a day — rolling back is then a two-minute job.</li>
+        <li><strong>Keep the OS updated.</strong> Let Windows Update (or your distro) do its normal thing, scheduled for a quiet hour.</li>
+        <li><strong>Back up the config folder.</strong> Your configs and credentials are the whole server. Copy the folder somewhere safe whenever you change it.</li>
+      </ul>
+      <div class="note warn"><strong>The config file is a password.</strong> It holds every key and account. Store the backup like a password — encrypted drive or password manager — never in a public repo, a shared folder, or an email to yourself.</div>
+    </section>
+
+    <section id="security">
+      <h2>8. Security rules</h2>
+      <ul class="donts">
+        <li><strong>Strong, separate credentials.</strong> A fresh random UUID per device for Xray, a long random password per device for Hysteria2, and a separate obfuscation password. Generated, never typed from your head, never reused from anything else.</li>
+        <li><strong>Expose 443 only.</strong> The only ports forwarded to the server are TCP 443 and UDP 443. No remote desktop, no admin panels, no file shares facing the internet — ever. If a management tool has a web panel, it stays on the home network only.</li>
+        <li><strong>Links and QR codes stay private.</strong> They are keys (Section 6). Not in screenshots, not in chats, not in "help me debug this" posts.</li>
+        <li><strong>One person, one account.</strong> Family gets their own accounts, so you can revoke one person without locking out everyone.</li>
+        <li><strong>Turn off what you do not use.</strong> Every extra running service is extra surface. The server runs the two tools, the watchdog, and nothing else.</li>
+        <li><strong>Keep the machine boring.</strong> No random downloads, no daily-driver browsing on the server. It is an appliance now.</li>
+      </ul>
+    </section>
+
+    <section id="honest">
+      <h2>9. Honest notes</h2>
+      <ul class="steps">
+        <li><strong>Electricity is the only running cost.</strong> A mini PC idles at roughly 10&nbsp;W — about 90&nbsp;kWh a year, a few dollars. An old desktop tower draws more; an old laptop or mini PC is the sweet spot.</li>
+        <li><strong>Your speed ceiling is your home upload.</strong> The tools are fast; the line is the limit. On a long international route at evening peak time, expect "good enough for video and everyday browsing", not your full home speed.</li>
+        <li><strong>It depends on your house.</strong> If your power or internet is down, your server is down. The boot-after-power-cut setting (Section 4) makes recovery automatic, but nothing makes a home line bulletproof.</li>
+        <li><strong>Know the local rules.</strong> Network rules differ by country, and they change. Check what applies where you live and where you travel. This guide is for your own private use, on your own hardware, on your own connection.</li>
+        <li><strong>Do not sell access.</strong> The moment you charge other people, you are running a business on a residential line — against most providers' terms, and a different legal world. Keep it yours.</li>
+      </ul>
+    </section>
+
+    <section id="resources">
+      <h2>Resources</h2>
+      <ul class="res">
+        <li><a href="https://github.com/XTLS/Xray-core" target="_blank" rel="noopener">Xray-core (GitHub)</a> — the Xray engine, official releases. Documentation at <a href="https://xtls.github.io" target="_blank" rel="noopener">xtls.github.io</a>.</li>
+        <li><a href="https://github.com/apernet/hysteria" target="_blank" rel="noopener">Hysteria (GitHub)</a> — Hysteria2 releases. Documentation at <a href="https://v2.hysteria.network" target="_blank" rel="noopener">v2.hysteria.network</a>.</li>
+        <li><a href="https://github.com/winsw/winsw" target="_blank" rel="noopener">WinSW (GitHub)</a> — the Windows service wrapper used in Section 4.</li>
+        <li><a href="https://github.com/2dust/v2rayNG" target="_blank" rel="noopener">v2rayNG (GitHub)</a> — the Android client.</li>
+        <li><a href="https://github.com/2dust/v2rayN" target="_blank" rel="noopener">v2rayN (GitHub)</a> — the Windows client.</li>
+        <li><strong>Shadowrocket</strong> — the iOS client, on the App Store.</li>
+        <li><a href="https://www.duckdns.org" target="_blank" rel="noopener">DuckDNS</a> — a free DDNS name that follows your changing home IP (most routers also have one built in).</li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <p>Home Server Guide — turn an old PC into your own 24/7 private proxy and remote-access server. Based on a real setup built and run by Ze (Mark) Song. For your own private use on your own hardware. Tool names belong to their owners. Every address, key and password in this guide is a placeholder — generate your own.</p>
+    </footer>
+
+  </main>
+</div>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>
