@@ -24,6 +24,7 @@ projects.forEach((p) => {
 
 // Build log — recent ships
 const log = [
+  ['Oct 28', 'Self-Measure Kit demo — homeowners measure, shops get a quote-ready summary'],
   ['Oct 28', 'Home Server Guide — turn an old PC into a 24/7 private server, published'],
   ['Oct 28', 'Foxuma demo — interactive demo with sample data, shipped'],
   ['Oct 28', 'Windows 11 Min-Max Guide — published on GitHub Pages'],
