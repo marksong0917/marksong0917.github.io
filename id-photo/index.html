@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf7f0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23b03a2e'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23fff' font-family='serif' font-weight='bold'%3E%E7%85%A7%3C/text%3E%3C/svg%3E">
+<title>证件照生成器 — 一寸二寸照片裁剪排版 | ID Photo Maker — Crop & Print ID Photos</title>
+<meta name="description" content="免费在线证件照制作：一寸 295×413、二寸 413×579、护照、身份证、美国签证，300 DPI 精确裁剪，还能排成六寸打印版。照片不上传，只在你的浏览器里处理。Free ID photo maker — crop to exact 300 DPI print sizes (1-inch, 2-inch, passport, ID card, US visa) and tile onto a 6-inch print sheet. Your photo never leaves your browser.">
+<link rel="canonical" href="https://marksong0917.github.io/id-photo/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mark Song">
+<meta property="og:title" content="证件照生成器 — 一寸二寸照片裁剪排版 | ID Photo Maker">
+<meta property="og:description" content="照片不上传，只在你的浏览器里处理。选尺寸、拖裁剪框、下载单张或六寸排版。Crop to exact ID photo sizes and download a print-ready sheet — all in your browser.">
+<meta property="og:url" content="https://marksong0917.github.io/id-photo/">
+<meta property="og:image" content="https://marksong0917.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="证件照生成器 | ID Photo Maker">
+<meta name="twitter:description" content="Crop photos to exact 300 DPI ID sizes — 1-inch, 2-inch, passport, ID card, US visa — and tile them on a 6-inch print sheet. Nothing uploads.">
+<meta name="twitter:image" content="https://marksong0917.github.io/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"证件照生成器 · ID Photo Maker","url":"https://marksong0917.github.io/id-photo/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"},"inLanguage":["zh-CN","en"],"author":{"@type":"Person","name":"Ze (Mark) Song","url":"https://marksong0917.github.io/"},"description":"A free in-browser ID photo maker. Crop a photo to exact 300 DPI print sizes (1-inch, 2-inch, small 1-inch, passport, Chinese ID card, US visa) and tile copies onto a 6-inch print sheet. Photos are processed locally and never uploaded."}
+</script>
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="seal">照</span>
+    <div>
+      <h1 data-i18n="title">证件照生成器</h1>
+      <p data-i18n="tagline">选尺寸、拖裁剪框、下载打印</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="langBtn" class="ghost-btn" type="button">EN</button>
+  </div>
+</header>
+
+<main>
+  <p class="intro"><strong data-i18n="privacy">照片不上传，只在你的浏览器里处理。</strong> <span data-i18n="intro">选一张照片，挑好尺寸，把裁剪框拖到脸部位置，就能下载精确像素的单张证件照，或者排好版的六寸打印图，拿去照相馆或自家打印机就能印。</span></p>
+  <p class="honest" data-i18n="honest">说明：本工具只负责裁剪和尺寸，不更换照片背景。需要蓝底、白底的，请拍的时候就用对应颜色的背景。</p>
+
+  <div id="dropZone" class="dropzone" role="button" tabindex="0" aria-label="drop zone">
+    <div class="dz-icon">🖼️</div>
+    <p class="dz-title" data-i18n="dropTitle">把照片拖到这里</p>
+    <p class="dz-or" data-i18n="dropOr">或者</p>
+    <button id="pickBtn" class="primary-btn" type="button" data-i18n="pickBtn">选择照片</button>
+    <p class="dz-hint" data-i18n="dropHint">支持 JPG、PNG、WebP，建议用正面免冠近照</p>
+    <input id="fileInput" type="file" accept="image/*" hidden>
+  </div>
+
+  <section id="editor" class="editor" hidden>
+    <div class="control-block">
+      <span class="block-label" data-i18n="sizeLabel">证件照尺寸（300 DPI）</span>
+      <div id="sizeGrid" class="size-grid"></div>
+      <p id="sizeInfo" class="size-info"></p>
+    </div>
+
+    <p class="crop-hint" data-i18n="cropHint">拖动裁剪框移动位置，拖动四个角调整大小（比例已锁定）。头顶留一点空，肩膀适当入框。</p>
+
+    <div class="stage-wrap">
+      <div id="stage" class="stage">
+        <canvas id="photoCanvas"></canvas>
+        <div id="cropBox" class="crop-box">
+          <span class="handle" data-corner="nw"></span>
+          <span class="handle" data-corner="ne"></span>
+          <span class="handle" data-corner="sw"></span>
+          <span class="handle" data-corner="se"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <div class="preview-block">
+        <span class="block-label" data-i18n="previewLabel">效果预览</span>
+        <canvas id="preview" class="preview" width="295" height="413"></canvas>
+      </div>
+      <div class="download-block">
+        <label class="fmt-label" for="singleFormat"><span data-i18n="formatLabel">单张格式</span>
+          <select id="singleFormat">
+            <option value="png" data-i18n="fmtPng">PNG（无损）</option>
+            <option value="jpeg" data-i18n="fmtJpeg">JPEG（文件小）</option>
+          </select>
+        </label>
+        <button id="dlSingle" class="primary-btn" type="button" data-i18n="dlSingle">下载单张</button>
+        <button id="dlSheet" class="primary-btn sheet-btn" type="button" data-i18n="dlSheet">下载六寸排版（JPEG）</button>
+        <p id="sheetInfo" class="sheet-info"></p>
+        <button id="changeBtn" class="ghost-btn" type="button" data-i18n="changePhoto">换一张照片</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="tips">
+    <h2 data-i18n="tipsTitle">拍照小提示</h2>
+    <ul>
+      <li data-i18n="tip1">站在纯色墙面前，光线均匀，别让脸上有一半阴影。</li>
+      <li data-i18n="tip2">手机拿正、与脸同高，拍半身照再裁，比直接怼脸拍更自然。</li>
+      <li data-i18n="tip3">六寸排版是 1795 × 1205 px（152 × 102 mm，300 DPI），打印时选「六寸/4×6 英寸」纸张即可。</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <nav class="foot-links">
+    <span class="foot-label" data-i18n="more">更多作品</span>
+    <a href="https://marksong0917.github.io/" target="_blank" rel="noopener">Dashboard · 作品集</a>
+    <a href="https://foxuma.com" target="_blank" rel="noopener">Foxuma</a>
+    <a href="https://marksong0917.github.io/typebook-zh/" target="_blank" rel="noopener">打字读经典 · Type the Classics</a>
+    <a href="https://marksong0917.github.io/typewords/" target="_blank" rel="noopener">打字背单词 · TypeWords</a>
+    <a href="https://marksong0917.github.io/dictation/" target="_blank" rel="noopener">听写助手 · Dictation</a>
+    <a href="https://marksong0917.github.io/imgcompress/" target="_blank" rel="noopener">图片压缩 · Image Compressor</a>
+    <a href="https://marksong0917.github.io/size-converter/" target="_blank" rel="noopener">尺寸换算 · Size Converter</a>
+    <a href="https://marksong0917.github.io/stroke-order/" target="_blank" rel="noopener">汉字笔顺 · Stroke Order</a>
+    <a href="https://marksong0917.github.io/qr-maker/" target="_blank" rel="noopener">二维码生成器 · QR Maker</a>
+    <a href="https://marksong0917.github.io/pomodoro/" target="_blank" rel="noopener">Pomodoro · 番茄钟</a>
+    <a href="https://marksong0917.github.io/id-photo/" target="_blank" rel="noopener">ID Photo Maker · 证件照</a>
+    <a href="https://marksong0917.github.io/idiom-chain/" target="_blank" rel="noopener">Idiom Solitaire · 成语接龙</a>
+    <a href="https://marksong0917.github.io/lucky-wheel/" target="_blank" rel="noopener">Lucky Wheel · 大转盘</a>
+    <a href="https://marksong0917.github.io/stair-calculator/" target="_blank" rel="noopener">Stair Calculator · 楼梯计算</a>
+    <a href="https://marksong0917.github.io/countdown/" target="_blank" rel="noopener">Countdown Days · 倒数日</a>
+    <a href="https://marksong0917.github.io/measure-kit/" target="_blank" rel="noopener">自助量尺 · Measure Kit</a>
+    <a href="https://github.com/marksong0917" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+  <p data-i18n="credit">免费开源（MIT）· Ze (Mark) Song 出品</p>
+</footer>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>

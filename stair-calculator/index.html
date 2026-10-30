@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>楼梯计算 · Stair Calculator — 步高、步宽、楼梯梁一次算清</title>
+<meta name="description" content="楼梯计算器：输入层高、目标步高和步宽，算出步数、实际步高、总进深、楼梯梁长度和楼梯角度，附舒适度检查和比例示意图。Stair calculator for carpenters: risers, treads, total run, stringer length and angle with comfort checks. All in mm.">
+<link rel="canonical" href="https://marksong0917.github.io/stair-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="楼梯计算 · Stair Calculator">
+<meta property="og:description" content="输入层高、目标步高、步宽，算出步数、实际步高、总进深、楼梯梁长与角度，附舒适度检查与比例图。 Risers, treads, run, stringer and angle — in mm, with comfort checks.">
+<meta property="og:url" content="https://marksong0917.github.io/stair-calculator/">
+<meta property="og:image" content="https://marksong0917.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="楼梯计算 · Stair Calculator">
+<meta name="twitter:description" content="Risers, treads, total run, stringer length and stair angle — in mm, with comfort-rule checks and a to-scale diagram. 输入层高就算楼梯。">
+<meta name="twitter:image" content="https://marksong0917.github.io/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23b03a2e'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23faf7f0' font-family='serif'%3E%E6%A2%AF%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#faf7f0">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"楼梯计算 Stair Calculator","url":"https://marksong0917.github.io/stair-calculator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"},"inLanguage":["zh-CN","en"],"author":{"@type":"Person","name":"Ze (Mark) Song"}}
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="seal">梯</span><div>
+    <h1 data-i18n="title">楼梯计算</h1>
+    <p class="tag" data-i18n="tag">步高 · 步宽 · 楼梯梁 — 木工楼梯一次算清，全用毫米</p>
+  </div></div>
+  <button id="langBtn" class="lang-btn" type="button">EN</button>
+</header>
+
+<main>
+  <section class="card">
+    <h2 data-i18n="inputs">输入</h2>
+    <div class="grid inputs">
+      <label><span data-i18n="totalRise">层高（地面到地面，mm）</span>
+        <input id="inRise" type="number" inputmode="decimal" min="1" step="1" value="2800"></label>
+      <label><span data-i18n="targetRiser">目标步高（mm）</span>
+        <input id="inTarget" type="number" inputmode="decimal" min="1" step="1" value="175"></label>
+      <label><span data-i18n="going">步宽 / 踏面进深（mm）</span>
+        <input id="inGoing" type="number" inputmode="decimal" min="1" step="1" value="250"></label>
+    </div>
+    <p class="hint" data-i18n="hint">改任意一个数字，结果和示意图立刻更新。步数向上取整，实际步高 = 层高 ÷ 步数。</p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="results">结果</h2>
+    <div class="grid results">
+      <div class="stat"><span class="k" data-i18n="risers">步数（立板数）</span><span class="v" id="outRisers">–</span></div>
+      <div class="stat"><span class="k" data-i18n="actualRiser">实际步高</span><span class="v"><span id="outActualRiser">–</span> <small>mm</small></span><span class="inch" id="inchRiser"></span></div>
+      <div class="stat"><span class="k" data-i18n="treads">踏面数</span><span class="v" id="outTreads">–</span></div>
+      <div class="stat"><span class="k" data-i18n="totalRun">总进深</span><span class="v"><span id="outRun">–</span> <small>mm</small></span><span class="inch" id="inchRun"></span></div>
+      <div class="stat"><span class="k" data-i18n="stringer">楼梯梁斜长</span><span class="v"><span id="outStringer">–</span> <small>mm</small></span><span class="inch" id="inchStringer"></span></div>
+      <div class="stat"><span class="k" data-i18n="angle">楼梯角度</span><span class="v"><span id="outAngle">–</span>°</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="checks">舒适度检查</h2>
+    <ul class="checks">
+      <li id="chkRiser"><span class="badge"></span><span class="ck-text"></span></li>
+      <li id="chkGoing"><span class="badge"></span><span class="ck-text"></span></li>
+      <li id="chkComfort"><span class="badge"></span><span class="ck-text"></span></li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="diagram">侧面示意图（按比例）</h2>
+    <div id="diagram" class="diagram"></div>
+  </section>
+</main>
+
+<footer>
+  <p class="foot-title" data-i18n="more">更多作品</p>
+  <nav class="foot-links">
+    <a href="https://marksong0917.github.io/">Dashboard</a> ·
+    <a href="https://foxuma.com">Foxuma</a> ·
+    <a href="https://marksong0917.github.io/typebook-zh/">打字读经典</a> ·
+    <a href="https://marksong0917.github.io/typewords/">打字背单词</a> ·
+    <a href="https://marksong0917.github.io/dictation/">听写助手</a> ·
+    <a href="https://marksong0917.github.io/imgcompress/">图片压缩</a> ·
+    <a href="https://marksong0917.github.io/size-converter/">尺寸换算</a> ·
+    <a href="https://marksong0917.github.io/stroke-order/">汉字笔顺</a> ·
+    <a href="https://marksong0917.github.io/qr-maker/">二维码生成器</a>
+    <a href="https://marksong0917.github.io/pomodoro/">番茄钟</a>
+    <a href="https://marksong0917.github.io/id-photo/">证件照</a>
+    <a href="https://marksong0917.github.io/idiom-chain/">成语接龙</a>
+    <a href="https://marksong0917.github.io/lucky-wheel/">大转盘</a>
+    <a href="https://marksong0917.github.io/stair-calculator/">楼梯计算</a>
+    <a href="https://marksong0917.github.io/countdown/">倒数日</a> ·
+    <a href="https://marksong0917.github.io/measure-kit/">自助量尺</a> ·
+    <a href="https://github.com/marksong0917">GitHub</a>
+  </nav>
+  <p class="foot-note">Stair Calculator · <span data-i18n="footNote">免费小工具，计算只在本机完成</span> · © Ze (Mark) Song</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

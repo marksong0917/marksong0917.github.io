@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成语接龙 · Idiom Solitaire — 中文成语接龙游戏</title>
+<meta name="description" content="成语接龙：与电脑对接成语，首尾相连，比拼成语储备。420 条常用成语，带拼音和释义，双语界面。Idiom Solitaire: chain Chinese idioms head-to-tail against the computer — 420 common idioms with pinyin and meanings, bilingual EN/中文.">
+<link rel="canonical" href="https://marksong0917.github.io/idiom-chain/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="成语接龙 · Idiom Solitaire">
+<meta property="og:description" content="与电脑对接成语，首尾相连。420 条常用成语，带拼音和释义。Chain Chinese idioms head-to-tail against the computer.">
+<meta property="og:url" content="https://marksong0917.github.io/idiom-chain/">
+<meta property="og:image" content="https://marksong0917.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="成语接龙 · Idiom Solitaire">
+<meta name="twitter:description" content="与电脑对接成语，首尾相连。420 条常用成语，带拼音和释义。Chain Chinese idioms head-to-tail against the computer.">
+<meta name="twitter:image" content="https://marksong0917.github.io/og.png">
+<meta name="theme-color" content="#faf7f0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23b03a2e'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23faf7f0' font-family='serif' font-weight='bold'%3E%E6%8E%A5%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"成语接龙 Idiom Solitaire","url":"https://marksong0917.github.io/idiom-chain/","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":["zh-CN","en"],"author":{"@type":"Person","name":"Ze (Mark) Song"}}
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="seal">接</div>
+    <div>
+      <h1 data-i18n="title">成语接龙</h1>
+      <p class="sub" data-i18n="subtitle">首尾相连 · 与电脑对接成语</p>
+    </div>
+  </div>
+  <button id="langBtn" class="lang-btn" type="button">EN</button>
+</header>
+
+<main>
+  <section class="card status">
+    <div class="stat"><span class="stat-label" data-i18n="score">接龙长度</span><span class="stat-num" id="score">0</span></div>
+    <div class="stat"><span class="stat-label" data-i18n="best">最佳纪录</span><span class="stat-num" id="best">0</span></div>
+    <div class="stat"><span class="stat-label" data-i18n="need">下一字</span><span class="stat-num need" id="needChar">—</span></div>
+    <div class="stat timer-stat" id="timerStat" hidden><span class="stat-label" data-i18n="timeLeft">剩余时间</span><span class="stat-num" id="timer">30</span></div>
+  </section>
+
+  <section class="card controls">
+    <button id="startBtn" class="btn primary" type="button" data-i18n="start">开始游戏</button>
+    <button id="hintBtn" class="btn" type="button" data-i18n="hint">提示</button>
+    <button id="giveUpBtn" class="btn danger" type="button" data-i18n="giveUp">认输</button>
+    <label class="timer-toggle"><input type="checkbox" id="timerToggle"> <span data-i18n="timer30">30 秒限时</span></label>
+  </section>
+
+  <p id="msg" class="msg" role="status"></p>
+  <p id="hintBox" class="hint-box" hidden></p>
+
+  <section class="card play">
+    <div class="play-row">
+      <input id="answer" type="text" maxlength="6" autocomplete="off"
+             data-i18n-ph="placeholder" placeholder="输入成语…">
+      <button id="submitBtn" class="btn primary" type="button" data-i18n="play">接龙</button>
+    </div>
+    <p class="rule" data-i18n="rule">规则：你接的成语，第一个字必须与上一个成语的最后一个字相同，不能重复。</p>
+  </section>
+
+  <section id="chain" class="chain" aria-live="polite"></section>
+</main>
+
+<footer>
+  <p class="foot-title" data-i18n="more">更多小应用</p>
+  <nav class="foot-links">
+    <a href="https://marksong0917.github.io/">Dashboard</a>
+    <a href="https://foxuma.com">Foxuma</a>
+    <a href="https://marksong0917.github.io/typebook-zh/">打字读经典</a>
+    <a href="https://marksong0917.github.io/typewords/">打字背单词</a>
+    <a href="https://marksong0917.github.io/dictation/">听写助手</a>
+    <a href="https://marksong0917.github.io/imgcompress/">图片压缩</a>
+    <a href="https://marksong0917.github.io/size-converter/">尺寸换算</a>
+    <a href="https://marksong0917.github.io/stroke-order/">汉字笔顺</a>
+    <a href="https://marksong0917.github.io/qr-maker/">二维码生成器</a>
+    <a href="https://marksong0917.github.io/pomodoro/">番茄钟</a>
+    <a href="https://marksong0917.github.io/id-photo/">证件照</a>
+    <a href="https://marksong0917.github.io/idiom-chain/">成语接龙</a>
+    <a href="https://marksong0917.github.io/lucky-wheel/">大转盘</a>
+    <a href="https://marksong0917.github.io/stair-calculator/">楼梯计算</a>
+    <a href="https://marksong0917.github.io/countdown/">倒数日</a>
+    <a href="https://marksong0917.github.io/measure-kit/">自助量尺</a>
+    <a href="https://github.com/marksong0917">GitHub</a>
+  </nav>
+  <p class="foot-note">© Ze (Mark) Song · <span data-i18n="dataNote">成语数据：chinese-xinhua 开源数据集（MIT）</span></p>
+</footer>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

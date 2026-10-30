@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf7f0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23b03a2e'/%3E%3Ctext x='32' y='45' font-size='34' text-anchor='middle' fill='%23fffdf8' font-family='serif' font-weight='700'%3E%E8%BD%AC%3C/text%3E%3C/svg%3E">
+<title>大转盘 — 在线幸运大转盘 | Lucky Wheel — Spin to Decide</title>
+<meta name="description" content="免费在线大转盘：自定义选项，转一转帮你做决定 — 今天吃什么、课堂点名、是或否。选项保存在本机，公平随机。Free lucky wheel — add your own options and spin to decide: what to eat, classroom picks, yes or no. Fair and random, saved locally.">
+<link rel="canonical" href="https://marksong0917.github.io/lucky-wheel/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mark Song">
+<meta property="og:title" content="大转盘 — 在线幸运大转盘 | Lucky Wheel">
+<meta property="og:description" content="自定义选项，转一转帮你做决定：今天吃什么、点名、是或否。Spin the wheel to decide — fair, random, bilingual.">
+<meta property="og:url" content="https://marksong0917.github.io/lucky-wheel/">
+<meta property="og:image" content="https://marksong0917.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="大转盘 | Lucky Wheel">
+<meta name="twitter:description" content="A free bilingual lucky wheel — add your options, spin, and let the wheel decide. 免费在线大转盘，自定义选项。">
+<meta name="twitter:image" content="https://marksong0917.github.io/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"大转盘 · Lucky Wheel","url":"https://marksong0917.github.io/lucky-wheel/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"},"inLanguage":["zh-CN","en"],"author":{"@type":"Person","name":"Ze (Mark) Song","url":"https://marksong0917.github.io/"},"description":"A bilingual lucky wheel that runs entirely in your browser. Add 2–24 custom options, spin with a fair uniform-random draw, and keep a history of results. Options are saved locally."}
+</script>
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="seal">转</span>
+    <div>
+      <h1 data-i18n="title">大转盘</h1>
+      <p data-i18n="tagline">转一转，帮你做决定</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="langToggle" class="ghost-btn" type="button">EN</button>
+  </div>
+</header>
+
+<main>
+  <p class="intro" data-i18n="intro">把纠结的事交给转盘：填好选项，点一下开始，指针停在哪个就是哪个。完全公平随机 — 每个选项机会均等。</p>
+  <p class="privacy" data-i18n="privacy">🔒 选项只保存在你的浏览器里，不上传</p>
+
+  <div class="layout">
+    <section class="card wheel-card">
+      <div class="wheel-wrap">
+        <div class="pointer" aria-hidden="true"></div>
+        <canvas id="wheel" width="520" height="520"></canvas>
+        <div class="hub" aria-hidden="true">转</div>
+      </div>
+      <div id="resultBanner" class="result-banner" hidden></div>
+      <p id="statusLine" class="status-line" data-i18n="statusReady">准备好了，点开始转动</p>
+      <button id="spinBtn" class="primary-btn spin-btn" type="button" data-i18n="spin">开始转动</button>
+    </section>
+
+    <div class="side-col">
+      <section class="card editor-card">
+        <span class="field-label" data-i18n="presetsLabel">快捷预设</span>
+        <div class="preset-row">
+          <button class="ghost-btn preset-btn" type="button" data-preset="food" data-i18n="presetFood">今天吃什么</button>
+          <button class="ghost-btn preset-btn" type="button" data-preset="names" data-i18n="presetNames">班级点名</button>
+          <button class="ghost-btn preset-btn" type="button" data-preset="yesno" data-i18n="presetYesNo">是或否</button>
+        </div>
+        <label class="field-label" for="optionsInput" data-i18n="optionsLabel">选项（每行一个）</label>
+        <textarea id="optionsInput" rows="10" data-i18n-ph="optionsPh" placeholder="每行写一个选项…"></textarea>
+        <div class="row-between">
+          <span id="countLine" class="muted small"></span>
+          <span class="muted small" data-i18n="rangeHint">2–24 个选项</span>
+        </div>
+        <p id="editorHint" class="error" hidden></p>
+      </section>
+
+      <section class="card history-card">
+        <span class="field-label" data-i18n="historyTitle">历史记录</span>
+        <ul id="historyList" class="history-list"></ul>
+        <p id="historyEmpty" class="muted small" data-i18n="historyEmpty">还没有结果，先转一次吧</p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <nav class="foot-links">
+    <span class="foot-label" data-i18n="more">更多作品</span>
+    <a href="https://marksong0917.github.io/" target="_blank" rel="noopener">Dashboard · 作品集</a>
+    <a href="https://foxuma.com" target="_blank" rel="noopener">Foxuma</a>
+    <a href="https://marksong0917.github.io/typebook-zh/" target="_blank" rel="noopener">Type the Classics · 打字读经典</a>
+    <a href="https://marksong0917.github.io/typewords/" target="_blank" rel="noopener">TypeWords · 打字背单词</a>
+    <a href="https://marksong0917.github.io/dictation/" target="_blank" rel="noopener">Dictation · 听写助手</a>
+    <a href="https://marksong0917.github.io/imgcompress/" target="_blank" rel="noopener">Image Compressor · 图片压缩</a>
+    <a href="https://marksong0917.github.io/size-converter/" target="_blank" rel="noopener">Size Converter · 尺寸换算</a>
+    <a href="https://marksong0917.github.io/stroke-order/" target="_blank" rel="noopener">Stroke Order · 汉字笔顺</a>
+    <a href="https://marksong0917.github.io/qr-maker/" target="_blank" rel="noopener">QR Maker · 二维码生成器</a>
+    <a href="https://marksong0917.github.io/pomodoro/" target="_blank" rel="noopener">Pomodoro · 番茄钟</a>
+    <a href="https://marksong0917.github.io/id-photo/" target="_blank" rel="noopener">ID Photo Maker · 证件照</a>
+    <a href="https://marksong0917.github.io/idiom-chain/" target="_blank" rel="noopener">Idiom Solitaire · 成语接龙</a>
+    <a href="https://marksong0917.github.io/lucky-wheel/" target="_blank" rel="noopener">Lucky Wheel · 大转盘</a>
+    <a href="https://marksong0917.github.io/stair-calculator/" target="_blank" rel="noopener">Stair Calculator · 楼梯计算</a>
+    <a href="https://marksong0917.github.io/countdown/" target="_blank" rel="noopener">Countdown Days · 倒数日</a>
+    <a href="https://marksong0917.github.io/measure-kit/" target="_blank" rel="noopener">Measure Kit · 自助量尺</a>
+    <a href="https://github.com/marksong0917" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+  <p><span data-i18n="credit">开源（MIT）</span> · <a href="https://github.com/marksong0917/lucky-wheel" target="_blank" rel="noopener">GitHub</a></p>
+</footer>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>
