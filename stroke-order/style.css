@@ -1,0 +1,96 @@
+:root{
+  --paper:#faf7f0; --card:#fffdf8; --ink:#2b2620; --muted:#8a7f6d;
+  --red:#b03a2e; --red-soft:#f6e3df; --line:#e6ddcd; --gold:#c8963e;
+  --done:#3e7d4e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--red)}
+button{font-family:inherit;cursor:pointer}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 28px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px}
+.seal{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;background:var(--red);color:#fff;font-family:"Noto Serif SC","Songti SC",serif;font-size:26px;font-weight:700;border-radius:8px;box-shadow:0 2px 8px rgba(176,58,46,.3)}
+.brand h1{margin:0;font-family:"Noto Serif SC","Songti SC",serif;font-size:26px;letter-spacing:2px}
+.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.top-actions{display:flex;align-items:center;gap:12px}
+.ghost-btn{background:transparent;border:1px solid var(--line);border-radius:8px;padding:7px 14px;font-size:14px;color:var(--ink)}
+.ghost-btn:hover{border-color:var(--red);color:var(--red)}
+.primary-btn{background:var(--red);color:#fff;border:0;border-radius:8px;padding:10px 22px;font-size:15px}
+.primary-btn:hover{background:#933025}
+.primary-btn:disabled,.ghost-btn:disabled{opacity:.45;cursor:default}
+.primary-btn:disabled:hover{background:var(--red)}
+.ghost-btn:disabled:hover{border-color:var(--line);color:var(--ink)}
+
+main{flex:1;width:100%;max-width:880px;margin:0 auto;padding:28px 20px 40px}
+.intro{color:var(--muted);font-size:15px;line-height:1.7;margin:0 0 22px}
+
+.shelf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.book{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:left;width:100%;transition:border-color .15s,transform .15s}
+.book:hover{border-color:var(--red);transform:translateY(-2px)}
+.book h3{margin:0 0 4px;font-family:"Noto Serif SC","Songti SC",serif;font-size:21px;letter-spacing:1px}
+.book .en-name{color:var(--muted);font-size:13px;margin:0 0 10px}
+.book .preview{font-family:"Noto Serif SC","Songti SC",serif;font-size:17px;color:#57503f;margin:0 0 14px;letter-spacing:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.book .meta-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted)}
+.level{border:1px solid var(--gold);color:var(--gold);border-radius:20px;padding:2px 10px;font-size:12px}
+.book .bar{height:5px;background:var(--line);border-radius:3px;margin-top:12px;overflow:hidden}
+.book .bar i{display:block;height:100%;background:var(--done)}
+.book .done-tag{color:var(--done);font-weight:600}
+
+.reader-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+.reader-title{text-align:center}
+.reader-title h2{margin:0;font-family:"Noto Serif SC","Songti SC",serif;font-size:28px;letter-spacing:3px}
+.reader-title p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.reader-actions{display:flex;gap:8px;min-width:44px}
+.char-title h2{letter-spacing:1px}
+.char-pinyin{font-size:19px;color:var(--red);font-family:"PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:0;margin-left:6px}
+
+.tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:12px}
+.tile{position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 4px 10px;text-align:center;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--red);transform:translateY(-2px)}
+.tile .glyph{display:block;font-family:"Noto Serif SC","Songti SC",serif;font-size:38px;line-height:1.15}
+.tile .py{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.tile .done-mark{position:absolute;top:5px;right:8px;color:var(--done);font-weight:700;font-size:14px}
+
+.mode-tabs{display:flex;gap:10px;margin:0 0 6px;justify-content:center}
+.mode-tab{border:1px solid var(--line);background:var(--card);border-radius:24px;padding:9px 22px;font-size:15px;font-family:"Noto Serif SC","Songti SC",serif;letter-spacing:1px;color:var(--muted)}
+.mode-tab.active{background:var(--red);border-color:var(--red);color:#fff}
+
+.stroke-info{text-align:center;color:var(--muted);font-size:14px;margin:10px 0 8px;min-height:20px}
+.stroke-info strong{color:var(--ink)}
+.progress-track{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:0 auto 18px;max-width:440px}
+#progressBar{height:100%;width:0;background:var(--red);transition:width .25s}
+
+.grid-wrap{position:relative;width:min(440px,100%);margin:0 auto;aspect-ratio:1/1;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+#gridSvg{position:absolute;inset:0;width:100%;height:100%}
+.grid-wrap canvas{position:absolute;inset:0;width:100%;height:100%}
+#drawCanvas{touch-action:none;cursor:crosshair}
+.stroke-path{stroke:var(--ink);stroke-width:36}
+.ghost-path{stroke:#d9c8a9;stroke-width:36;opacity:.6}
+.answer-path{stroke:var(--red);stroke-width:36}
+.num-label circle{fill:var(--red)}
+.num-label text{fill:#fff;font-size:42px;font-weight:700;text-anchor:middle;font-family:"PingFang SC",sans-serif}
+.num-label{opacity:0;transition:opacity .2s}
+.num-label.on{opacity:1}
+
+.controls{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.text-note{color:var(--muted);font-size:13px;text-align:center;margin-top:14px;line-height:1.6}
+
+.done-banner{max-width:440px;margin:18px auto 0;background:#eef4ee;border:1px solid #cfe0cf;border-radius:14px;padding:18px 20px 20px;text-align:center}
+.done-emoji{font-size:30px;margin:0 0 4px}
+.done-text{margin:0 0 14px;color:#3c5a42;font-size:15px}
+.done-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--line);padding:20px 28px;text-align:center;color:var(--muted);font-size:13px}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;align-items:center;margin-bottom:12px}
+.foot-label{font-weight:600;color:var(--ink)}
+.foot-links a{color:var(--muted);text-decoration:none}
+.foot-links a:hover{color:var(--red);text-decoration:underline}
+
+@media (max-width:560px){
+  main{padding:20px 14px 32px}
+  .reader-title h2{font-size:23px}
+  .tile-grid{grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:10px}
+  .tile .glyph{font-size:32px}
+}
