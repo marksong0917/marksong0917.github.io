@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf7f0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23b03a2e'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23fff' font-family='serif' font-weight='bold'%3E%E5%90%AC%3C/text%3E%3C/svg%3E">
+<title>听写助手 — 听一听，写下来 | Dictation — Listen and Type</title>
+<meta name="description" content="听写练习：听一句，写一句，逐字对照找出错在哪里。中文诗句、成语，英文日常句和名言，带真人感语音播放和慢速模式。Dictation practice in Chinese and English: listen, type, and see a character-by-character diff.">
+<link rel="canonical" href="https://marksong0917.github.io/dictation/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mark Song">
+<meta property="og:title" content="听写助手 — 听一听，写下来 | Dictation — Listen and Type">
+<meta property="og:description" content="中文诗句、成语听写，英文句子听写：播放、慢速、逐字对照、错题重练。Chinese and English dictation practice with voice playback, slow mode and a character-by-character diff.">
+<meta property="og:url" content="https://marksong0917.github.io/dictation/">
+<meta property="og:image" content="https://marksong0917.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="听写助手 | Dictation — Listen and Type">
+<meta name="twitter:description" content="Listen, type, compare — dictation practice for Chinese poems, idioms and English sentences, with voice and slow playback.">
+<meta name="twitter:image" content="https://marksong0917.github.io/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"听写助手 · Dictation","url":"https://marksong0917.github.io/dictation/","applicationCategory":"EducationalApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"},"inLanguage":["zh-CN","en"],"author":{"@type":"Person","name":"Ze (Mark) Song","url":"https://marksong0917.github.io/"},"description":"Dictation practice: listen to Chinese poem lines, idioms and English sentences, type what you hear, and get a character-by-character diff with scores."}
+</script>
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="seal">听</span>
+    <div>
+      <h1 data-i18n="title">听写助手</h1>
+      <p data-i18n="tagline">听一听，写下来</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="langBtn" class="ghost-btn" type="button">EN</button>
+  </div>
+</header>
+
+<main>
+  <!-- Shelf -->
+  <section id="shelf">
+    <p class="intro" data-i18n="intro">选一个题库，点播放，仔细听，然后把听到的内容写下来。检查后逐字对照：对的变绿，错的标红并给出正确写法。中文按字对，英文不分大小写、不计标点。</p>
+    <h2 class="section-title" data-i18n="setsTitle">选一个题库</h2>
+    <div id="shelfGrid" class="shelf-grid"></div>
+  </section>
+
+  <!-- Player -->
+  <section id="player-screen" hidden>
+    <div class="reader-head">
+      <button id="backBtn" class="ghost-btn" type="button">← <span data-i18n="back">题库</span></button>
+      <div class="reader-title">
+        <h2 id="setName"></h2>
+        <p id="itemPos"></p>
+      </div>
+      <div class="head-spacer"></div>
+    </div>
+
+    <div id="stage">
+      <div class="play-row">
+        <button id="playBtn" class="play-btn" type="button">▶ <span data-i18n="play">播放</span></button>
+        <button id="slowBtn" class="ghost-btn slow-btn" type="button">🐢 <span data-i18n="slow">慢速</span></button>
+      </div>
+      <div class="counters">
+        <span><span data-i18n="plays">已播放</span> <strong id="playCount">0</strong> <span data-i18n="times">次</span></span>
+        <span><span data-i18n="attempts">已尝试</span> <strong id="attemptCount">0</strong> <span data-i18n="times">次</span></span>
+        <span id="scoreLine" class="score-line"></span>
+      </div>
+
+      <div class="input-row">
+        <input id="answer" type="text" autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button id="checkBtn" class="primary-btn" type="button" data-i18n="check">检查</button>
+      </div>
+
+      <p id="feedback" class="feedback"></p>
+      <div id="diff" class="diff"></div>
+      <div id="info" class="info"></div>
+
+      <div class="item-actions">
+        <button id="revealBtn" class="ghost-btn" type="button" hidden data-i18n="reveal">显示答案</button>
+        <button id="nextBtn" class="primary-btn" type="button" hidden data-i18n="next">下一题</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section id="summary" hidden>
+    <div class="overlay-card summary-card">
+      <span class="seal big">完</span>
+      <h2 data-i18n="summaryTitle">本轮完成</h2>
+      <p class="overall"><span data-i18n="overall">总得分</span> <strong id="overallScore">0%</strong></p>
+      <h3 class="missed-title" data-i18n="missedTitle">需要再练的</h3>
+      <div id="missedList" class="missed-list"></div>
+      <div class="done-actions">
+        <button id="againBtn" class="primary-btn" type="button" data-i18n="again">再练一轮</button>
+        <button id="shelfBtn" class="ghost-btn" type="button" data-i18n="back">题库</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <nav class="foot-links">
+    <span class="foot-label" data-i18n="more">更多作品</span>
+    <a href="https://marksong0917.github.io/" target="_blank" rel="noopener">作品集 Dashboard</a>
+    <a href="https://foxuma.com" target="_blank" rel="noopener">Foxuma</a>
+    <a href="https://marksong0917.github.io/typebook-zh/" target="_blank" rel="noopener">打字读经典</a>
+    <a href="https://marksong0917.github.io/typewords/" target="_blank" rel="noopener">打字背单词</a>
+    <a href="https://marksong0917.github.io/imgcompress/" target="_blank" rel="noopener">图片压缩</a>
+    <a href="https://marksong0917.github.io/measure-kit/" target="_blank" rel="noopener">自助量尺</a>
+    <a href="https://github.com/marksong0917" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+  <p data-i18n="credit">声音由本地 Piper 语音模型离线生成 · 开源（MIT）</p>
+</footer>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>

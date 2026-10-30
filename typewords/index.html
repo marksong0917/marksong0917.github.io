@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf7f0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23b03a2e'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23fff' font-family='serif' font-weight='bold'%3E%E8%AF%8D%3C/text%3E%3C/svg%3E">
+<title>打字背单词 — 打字学英语单词，听发音记意思 | TypeWords — Type English Words, Hear Them, Learn Them</title>
+<meta name="description" content="把英语单词一个字母一个字母敲出来：小学到大学四级共 120 个词，敲完听真人感发音、看中文意思和例句，错词自动复习。Type English words letter by letter — 120 words from primary school to CET-4, with voice, meanings and examples.">
+<link rel="canonical" href="https://marksong0917.github.io/typewords/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mark Song">
+<meta property="og:title" content="打字背单词 TypeWords — 打字学英语单词，听发音记意思">
+<meta property="og:description" content="小学到四级 120 个单词，一个字母一个字母敲出来。敲完听发音、记意思、看例句，错词自动复习。Type words letter by letter, hear them, learn them.">
+<meta property="og:url" content="https://marksong0917.github.io/typewords/">
+<meta property="og:image" content="https://marksong0917.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="打字背单词 | TypeWords">
+<meta name="twitter:description" content="Type English words letter by letter — hear the pronunciation, learn the meaning. 120 words, primary to CET-4. 打字学单词，听发音记意思。">
+<meta name="twitter:image" content="https://marksong0917.github.io/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"打字背单词 · TypeWords","url":"https://marksong0917.github.io/typewords/","applicationCategory":"EducationalApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"},"inLanguage":["zh-CN","en"],"author":{"@type":"Person","name":"Ze (Mark) Song","url":"https://marksong0917.github.io/"},"description":"A typing vocabulary trainer: type English words letter by letter, hear each word spoken, learn its Chinese meaning and an example sentence. 120 words in four levels, from primary school to CET-4."}
+</script>
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="seal">词</span>
+    <div>
+      <h1 data-i18n="title">打字背单词</h1>
+      <p data-i18n="tagline">一个字母一个字母敲，敲完就记住</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="voiceBtn" class="ghost-btn" type="button" title="Voice">🔊</button>
+    <button id="langBtn" class="ghost-btn" type="button">EN</button>
+  </div>
+</header>
+
+<main>
+  <!-- Level shelf -->
+  <section id="shelf">
+    <p class="intro" data-i18n="intro">选一个词库，把每个单词亲手敲一遍。敲完会听到发音，看到中文意思和例句；打错的词最后会再来一轮，直到记住为止。</p>
+    <div class="mode-tabs" role="group" aria-label="order">
+      <button id="orderSeq" class="mode-tab active" type="button" data-i18n="orderSeq">顺序</button>
+      <button id="orderRand" class="mode-tab" type="button" data-i18n="orderRand">随机</button>
+    </div>
+    <div id="shelfGrid" class="shelf-grid shelf-levels"></div>
+  </section>
+
+  <!-- Practice -->
+  <section id="practice" hidden>
+    <div class="reader-head">
+      <button id="backBtn" class="ghost-btn" type="button">← <span data-i18n="back">词库</span></button>
+      <div class="reader-title">
+        <h2 id="pTitle"></h2>
+        <p id="pPhase"></p>
+      </div>
+      <div class="reader-actions">
+        <button id="restartBtn" class="ghost-btn" type="button" data-i18n="restart">重开本轮</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span class="stat-num" id="stProgress">0/30</span><span class="stat-label" data-i18n="progress">进度</span></div>
+      <div class="stat"><span class="stat-num" id="stAcc">100%</span><span class="stat-label" data-i18n="accuracy">正确率</span></div>
+      <div class="stat"><span class="stat-num" id="stSpeed">0</span><span class="stat-label" data-i18n="speedUnit">字母/分钟</span></div>
+      <div class="stat"><span class="stat-num" id="stTime">0:00</span><span class="stat-label" data-i18n="time">用时</span></div>
+    </div>
+    <div class="progress-track"><div id="progressBar"></div></div>
+
+    <div id="wordCard" tabindex="0" aria-label="typing area">
+      <div id="slots" class="slots"></div>
+      <p id="phonetic" class="phonetic"></p>
+      <div class="hint-row">
+        <label class="hint-toggle"><input type="checkbox" id="hintToggle"> <span data-i18n="hint">提示（看中文意思）</span></label>
+        <span id="meaning" class="meaning" hidden></span>
+      </div>
+      <div id="reveal" class="reveal" hidden>
+        <p class="reveal-meaning" id="revealMeaning"></p>
+        <p class="reveal-ex" id="revealEx"></p>
+        <p class="reveal-exzh" id="revealExZh"></p>
+        <button id="nextBtn" class="primary-btn" type="button" data-i18n="next">下一个</button>
+      </div>
+      <input id="mobileInput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" aria-hidden="true">
+    </div>
+    <p class="kbd-tip" data-i18n="kbdTip">点击单词卡后开始打字 · 请使用英文输入法</p>
+  </section>
+
+  <!-- Done overlay -->
+  <div id="doneOverlay" class="overlay" hidden>
+    <div class="overlay-card">
+      <span class="seal big">记</span>
+      <h2 data-i18n="doneTitle">这一轮完成了</h2>
+      <p id="doneLevelName" class="done-name"></p>
+      <div class="done-stats">
+        <div><strong id="dTime">0:00</strong><span data-i18n="time">用时</span></div>
+        <div><strong id="dAcc">100%</strong><span data-i18n="accuracy">正确率</span></div>
+        <div><strong id="dSpeed">0</strong><span data-i18n="speedUnit">字母/分钟</span></div>
+        <div><strong id="dMastered">0</strong><span data-i18n="mastered">已掌握</span></div>
+      </div>
+      <p id="doneNote" class="done-note"></p>
+      <div class="done-actions">
+        <button id="againBtn" class="primary-btn" type="button" data-i18n="again">再来一轮</button>
+        <button id="shelfBtn" class="ghost-btn" type="button" data-i18n="backToShelf">换词库</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <nav class="foot-links">
+    <span class="foot-label" data-i18n="more">更多作品</span>
+    <a href="https://marksong0917.github.io/" target="_blank" rel="noopener">作品集 Dashboard</a>
+    <a href="https://foxuma.com" target="_blank" rel="noopener">Foxuma</a>
+    <a href="https://marksong0917.github.io/typebook-zh/" target="_blank" rel="noopener">打字读经典</a>
+    <a href="https://marksong0917.github.io/dictation/" target="_blank" rel="noopener">听写助手</a>
+    <a href="https://marksong0917.github.io/imgcompress/" target="_blank" rel="noopener">图片压缩</a>
+    <a href="https://marksong0917.github.io/measure-kit/" target="_blank" rel="noopener">自助量尺</a>
+    <a href="https://github.com/marksong0917" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+  <p><span data-i18n="credit">我们自己的原创实现，开源（MIT）</span> · <span data-i18n="creditBy">作者</span> Ze (Mark) Song</p>
+</footer>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>
