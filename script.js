@@ -31,6 +31,7 @@ const grid = document.getElementById('projectGrid');
 projects.forEach((p, i) => {
   const el = document.createElement('article');
   el.className = 'card reveal';
+  el.dataset.group = p.rank === 'New' ? 'apps' : (p.rank === 'Guide' || p.rank === 'Open source') ? 'guides' : 'work';
   el.style.transitionDelay = Math.min(i, 6) * 70 + 'ms'; // cascade the grid in; cleared after reveal so hover stays snappy
   const liveDot = (p.cls === 'live' || p.cls === 'running') ? '<span class="sdot" aria-hidden="true"></span>' : '';
   el.innerHTML = `
@@ -40,6 +41,26 @@ projects.forEach((p, i) => {
     ${p.link ? `<div class="card-links"><a href="${p.link}" target="_blank" rel="noopener">${p.linkText}</a>${p.link2 ? `<a href="${p.link2}" target="_blank" rel="noopener">${p.link2Text}</a>` : ''}</div>` : `<p class="note-none">${p.note}</p>`}`;
   grid.appendChild(el);
 });
+
+// Project filters — counts are computed from the rendered cards
+const fchips = Array.from(document.querySelectorAll('.fchip'));
+if (fchips.length && grid) {
+  const cards = Array.from(grid.children);
+  const counts = { all: cards.length, work: 0, apps: 0, guides: 0 };
+  cards.forEach((c) => { counts[c.dataset.group] = (counts[c.dataset.group] || 0) + 1; });
+  document.querySelectorAll('.fcount').forEach((s) => { s.textContent = counts[s.dataset.count] ?? ''; });
+  fchips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      fchips.forEach((c) => { c.classList.toggle('on', c === chip); c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      const f = chip.dataset.filter;
+      cards.forEach((c) => {
+        const show = f === 'all' || c.dataset.group === f;
+        c.classList.toggle('is-hidden', !show);
+        if (show) { c.classList.add('in'); c.style.transitionDelay = ''; }
+      });
+    });
+  });
+}
 
 // Reveal on scroll
 const items = document.querySelectorAll('.reveal');
