@@ -2,7 +2,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 // Projects — live statuses (Foxuma first, always)
 const projects = [
-  { rank: 'No. 2', name: 'Shadowrocket Servers', status: 'Running 24/7', cls: 'running', pct: 100, desc: 'Self-hosted private network servers I built on my own hardware — per-device access, encrypted connections, automatic recovery, runs unattended.', link: 'home-server-guide/', linkText: 'Read the Home Server Guide' },
+  { rank: 'No. 2', name: 'Shadowrocket Servers', status: 'Running 24/7', cls: 'running', pct: 100, desc: 'A two-node private network I run — a Hong Kong relay in front of my Canadian home node. Connections enter in Hong Kong and exit at home in Canada, with per-user access for family and friends. Self-updating and watched — runs unattended.', link: 'home-server-guide/', linkText: 'Read the Home Server Guide' },
   { rank: 'No. 3', name: 'Mir2 Game Server', status: 'Running 24/7', cls: 'running', pct: 100, desc: 'A self-hosted Legend of Mir 2 (1.76) online game server I built and run — custom configuration, scheduled backups, steady uptime.', link: 'mir2/', linkText: 'About the server' },
   { rank: 'No. 4', name: 'Newood Millwork', status: 'Live', cls: 'live', pct: 100, desc: 'Website for a custom cabinetry and millwork manufacturer in Concord, Ontario — clean, premium, built to bring in project enquiries.', link: 'https://newoodmillwork.com', linkText: 'newoodmillwork.com' },
   { rank: 'No. 5', name: 'York Region Web Studio', status: 'Live', cls: 'live', pct: 100, desc: 'My own studio. Premium websites and systems for local small businesses across York Region — one service, priced by written quote.', link: 'https://yorkregionwebstudio.com', linkText: 'yorkregionwebstudio.com' },
