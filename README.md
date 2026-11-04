@@ -1,14 +1,12 @@
 # Mark Song — Portfolio (dashboard style)
 
-Ze (Mark) Song's portfolio as a live dashboard: sidebar identity card, KPI strip, Foxuma featured, all projects with live status + progress, tech stack, build log, about, contact. One page — portfolio and personal dashboard in one. Sub-pages: /demo/ (Foxuma demo), /measure-kit/ (Self-Measure Kit demo).
+Ze (Mark) Song's portfolio as a live dashboard: sidebar identity card, KPI strip, Foxuma featured, all projects with live status + progress, tech stack, about, contact. One page — portfolio and personal dashboard in one. Sub-pages: /measure-kit/ (Self-Measure Kit demo), /estimator/, /case-study/, the 13 mini-apps, and the guides.
 
-Showcase order: 1. Foxuma · 2. Newood Millwork · 3. York Region Web Studio · 4. Havenwest Closets · 5. Shadowrocket Servers (private infrastructure, no public link) · 6. Mir2 Game Server (private, no public link).
+Showcase order: 1. Foxuma · 2. Shadowrocket Servers (private infrastructure, no public details) · 3. Mir2 Game Server (private, no public link) · 4. Newood Millwork · 5. York Region Web Studio · 6. Havenwest Closets.
 
-## Foxuma demo (`/demo/`)
+## Foxuma
 
-Interactive demo with sample data only — dashboard, projects, invoices, and the Fox assistant. Linked from the portfolio's Foxuma section as "Try the demo".
-
-For foxuma.com: the same demo should be linked from the Foxuma homepage and pricing as "Try the demo", so clients can play with it before they buy. Recommended placement: hero secondary button + pricing section button, pointing at the demo (this static version can be hosted as-is, or replaced by the live demo account).
+The public demo page (`/demo/`) was removed on 2026-11-01 — Foxuma's only try path is the 7-day free trial at [foxuma.com](https://foxuma.com). Nothing public links to a demo anymore.
 
 ## Run locally
 

@@ -30,11 +30,11 @@ python3 -m http.server 8000
 # gallery: http://localhost:8000  ·  templates: /t1-millwork/ /t2-closets/ /t3-trades/
 ```
 
-## Publish on GitHub Pages
+## Publish
 
-1. Create a public repo named `yrws-template-pack` under github.com/marksong0917.
-2. Push these files to its `main` branch.
-3. Repo Settings → Pages → Deploy from branch `main` / root.
-4. Live at https://marksong0917.github.io/yrws-template-pack/
+The pack lives in the personal-portfolio repo (the marksong0917.github.io user site) under `template-pack/`:
+
+1. Edit the files in `template-pack/` in that repo.
+2. Commit and push — GitHub Pages serves it at https://marksong0917.github.io/template-pack/
 
 No build step. Plain HTML/CSS.
