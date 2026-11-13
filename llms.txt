@@ -1,0 +1,46 @@
+# Ze (Mark) Song — Portfolio
+
+> Ze (Mark) Song is a programmer and builder in Aurora, Ontario, Canada. He works in admin, HR and IT at Newood Millwork Inc. (custom cabinetry, Concord, Ontario), founded York Region Web Studio, and created Foxuma, a business platform for cabinet and millwork shops. This site showcases his live work: 2 featured products and 21 projects hosted on GitHub Pages, including 13 free bilingual (English / Chinese) mini-apps. Contact: marksong0000@gmail.com
+
+## Featured
+
+- [Foxuma](https://foxuma.com): Business platform for cabinet and millwork shops — projects, orders, customers, invoicing, payroll support and a built-in office assistant (Secretary Fox). Pricing (CAD): Pro $99/month flat, unlimited seats, all features, no setup fee; first year $79/month; founding offer for the first 10 shops: $79/month locked for 2 years. 7-day free trial, no card required. Data stored in Canada.
+- [York Region Web Studio](https://yorkregionwebstudio.com): Custom websites and systems for small businesses in York Region, Ontario. Priced by written quote.
+
+## Services (on this site)
+
+- [Windows 11 Setup Service](https://marksong0917.github.io/win11-setup/): LTSC-clean Windows 11 setup done for you, remote or on-site in the GTA. From $149 per PC.
+- [Private Server Setup Service](https://marksong0917.github.io/server-setup/): Xray VLESS+REALITY and Hysteria2 server setup on your VPS or home PC. $199 setup, optional care $20/month.
+- [Home Server Guide](https://marksong0917.github.io/home-server-guide/): Free guide — turn an old PC into a 24/7 private server.
+- [Website Template Pack](https://marksong0917.github.io/template-pack/): York Region Web Studio template collection.
+- [Foxuma Case Study](https://marksong0917.github.io/case-study/): How Foxuma runs a real cabinet shop day to day.
+
+## Tools (mini-apps and demos)
+
+- [Image Compressor](https://marksong0917.github.io/imgcompress/): Shrink images in the browser; nothing uploads.
+- [QR Maker](https://marksong0917.github.io/qr-maker/): Create QR codes in the browser with PNG download.
+- [ID Photo Maker](https://marksong0917.github.io/id-photo/): Crop photos to ID, passport and visa sizes at print resolution.
+- [Size Converter](https://marksong0917.github.io/size-converter/): Inch fractions to millimetres and back, for the trades.
+- [Stair Calculator](https://marksong0917.github.io/stair-calculator/): Risers, treads, run and stringer length with comfort checks.
+- [Self-Measure Kit](https://marksong0917.github.io/measure-kit/): Homeowners measure a kitchen or closet; the shop gets a quote-ready summary.
+- [Trade Estimator](https://marksong0917.github.io/estimator/): Instant price-range estimator a shop embeds on its website.
+- [Pomodoro](https://marksong0917.github.io/pomodoro/): A 25-minute focus timer with breaks.
+- [Countdown Days](https://marksong0917.github.io/countdown/): Countdown cards for important dates.
+
+## Language learning
+
+- [Type the Classics](https://marksong0917.github.io/typebook-zh/): Read Chinese and English classics by typing them; 18 books.
+- [TypeWords](https://marksong0917.github.io/typewords/): Learn 120 English curriculum words by typing, with audio.
+- [Dictation](https://marksong0917.github.io/dictation/): Listen and type — Chinese poetry, idioms and English sentences.
+- [Stroke Order](https://marksong0917.github.io/stroke-order/): Animated stroke order and tracing for 96 common Chinese characters.
+
+## Games
+
+- [Idiom Solitaire](https://marksong0917.github.io/idiom-chain/): Chain Chinese idioms head-to-tail against the computer; 420 idioms.
+- [Lucky Wheel](https://marksong0917.github.io/lucky-wheel/): Spin-the-wheel decision maker.
+
+## More
+
+- [Mir2 Game Server](https://marksong0917.github.io/mir2/): Self-hosted Legend of Mir 2 (1.76) server.
+- [Windows 11 Optimization Guide](https://marksong0917.github.io/win11-optimization-guide/): A clean, low-bloat Windows 11 setup, step by step (English and Chinese).
+- [GitHub profile](https://github.com/marksong0917): Source code for the open-source projects.
