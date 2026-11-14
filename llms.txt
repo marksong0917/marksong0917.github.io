@@ -43,7 +43,7 @@
 
 - [Mir2 Game Server](https://marksong0917.github.io/mir2/): Self-hosted Legend of Mir 2 (1.76) server.
 - [Windows 11 Optimization Guide](https://marksong0917.github.io/win11-optimization-guide/): A clean, low-bloat Windows 11 setup, step by step (English and Chinese).
-- [GitHub profile](https://github.com/marksong0917): Source code for the open-source projects.
+- [GitHub profile](https://github.com/marksong0917): Source code for these projects — public to read, free for personal and noncommercial use.
 
 ## 中文简介
 
