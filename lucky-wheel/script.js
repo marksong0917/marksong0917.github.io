@@ -24,7 +24,7 @@ const STRINGS = {
     historyEmpty: '还没有结果，先转一次吧',
     round: (n) => `第 ${n} 次`,
     more: '更多作品',
-    credit: '开源（MIT）',
+    credit: '源码公开 · 个人使用免费',
     docTitle: '大转盘 — 在线幸运大转盘 | Lucky Wheel',
   },
   en: {
@@ -50,7 +50,7 @@ const STRINGS = {
     historyEmpty: 'No results yet — give it a spin',
     round: (n) => `#${n}`,
     more: 'More projects',
-    credit: 'Open source (MIT)',
+    credit: 'Source-available — free for personal use',
     docTitle: 'Lucky Wheel — Spin to Decide | 大转盘',
   },
 };
