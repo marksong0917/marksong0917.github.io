@@ -3,7 +3,7 @@
    Two modes: Chinese classics typed by pinyin (no tones; ü = v),
    English classics typed letter by letter. Voice reads each finished
    character/word aloud (Web Speech API). Our own implementation,
-   inspired by Typebook (typebook.lol). MIT licensed. */
+   inspired by Typebook (typebook.lol). Source-available (PolyForm Noncommercial). */
 
 /* ---------- data ----------
    Chinese: tokens "字|pīnyīn" (empty pinyin = punctuation).
@@ -143,7 +143,7 @@ const STR = {
     back:'书架', restart:'重读', listen:'朗读', stop:'停止', progress:'进度', accuracy:'正确率', speed:'字/分钟', speedW:'词/分钟', time:'用时',
     kbdTip:'中文请用英文输入法敲拼音 · 点击此处后开始打字',
     doneTitle:'读完了', again:'再读一遍', backToShelf:'回到书架',
-    credit:'灵感来自', credit2:'我们自己的实现，开源（MIT）', more:'更多作品',
+    credit:'灵感来自', credit2:'我们自己的实现，源码公开', more:'更多作品',
     chars:'字', words:'词', level0:'入门', level1:'进阶', start:'开始', resume:'继续', finished:'已读完' },
   en:{ title:'Type the Classics', tagline:'Read a classic by typing it',
     intro:'Two ways to read: Chinese classics by pinyin, English classics letter by letter. Type each character or word correctly and it lights up. For Chinese: no tones needed, type v for ü.',
@@ -151,7 +151,7 @@ const STR = {
     back:'Shelf', restart:'Restart', listen:'Listen', stop:'Stop', progress:'Progress', accuracy:'Accuracy', speed:'Chars/min', speedW:'Words/min', time:'Time',
     kbdTip:'Click here, then type \u00b7 Chinese texts: type pinyin on an English keyboard layout',
     doneTitle:'Finished', again:'Read it again', backToShelf:'Back to shelf',
-    credit:'Inspired by', credit2:'our own implementation, open source (MIT)', more:'More projects',
+    credit:'Inspired by', credit2:'our own implementation, source-available', more:'More projects',
     chars:'chars', words:'words', level0:'Easy', level1:'Harder', start:'Start', resume:'Continue', finished:'Finished' }
 };
 let lang = localStorage.getItem('tbzh-lang') || 'zh';
