@@ -30,4 +30,4 @@ QR Code is a registered trademark of DENSO WAVE INCORPORATED.
 
 ## License
 
-MIT © Ze (Mark) Song — the vendored library remains under its own MIT license (see above).
+Source-available © Ze (Mark) Song (PolyForm Noncommercial — see LICENSE) — the vendored library remains under its own MIT license (see above).
