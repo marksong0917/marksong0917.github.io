@@ -26,7 +26,7 @@ const STRINGS = {
     chars: '字',
     modules: '模块',
     more: '更多作品',
-    credit: '开源（MIT）',
+    credit: '源码公开 · 个人使用免费',
   },
   en: {
     title: 'QR Maker',
@@ -50,7 +50,7 @@ const STRINGS = {
     chars: 'chars',
     modules: 'modules',
     more: 'More projects',
-    credit: 'Open source (MIT)',
+    credit: 'Source-available — free for personal use',
   },
 };
 
