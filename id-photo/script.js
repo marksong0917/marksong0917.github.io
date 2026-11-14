@@ -39,7 +39,7 @@ const STR = {
     tip2: "手机拿正、与脸同高，拍半身照再裁，比直接怼脸拍更自然。",
     tip3: "六寸排版是 1795 × 1205 px（152 × 102 mm，300 DPI），打印时选「六寸/4×6 英寸」纸张即可。",
     more: "更多作品",
-    credit: "免费开源（MIT）· Ze (Mark) Song 出品",
+    credit: "源码公开 · 个人使用免费 · Ze (Mark) Song 出品",
     sizeInfo: "当前输出：{w} × {h} px · {mm}",
     sheetInfo: "六寸相纸可排 {n} 张"
   },
@@ -67,7 +67,7 @@ const STR = {
     tip2: "Hold the phone level with the face and shoot a half-body shot, then crop — it looks more natural than a close-up.",
     tip3: "The sheet is 1795 × 1205 px (152 × 102 mm, 300 DPI). Print it on 6-inch / 4×6 paper.",
     more: "More projects",
-    credit: "Free & open source (MIT) · by Ze (Mark) Song",
+    credit: "Free & source-available · by Ze (Mark) Song",
     sizeInfo: "Output: {w} × {h} px · {mm}",
     sheetInfo: "Fits {n} copies on a 6-inch sheet"
   }
