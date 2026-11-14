@@ -22,7 +22,7 @@ const STR = {
     un_m2: '平方米', un_cm2: '平方厘米', un_ha: '公顷', un_ft2: '平方英尺', un_in2: '平方英寸', un_acre: '英亩',
     un_C: '摄氏度', un_F: '华氏度', un_K: '开尔文',
     jinNote: '500 克', more: '更多作品',
-    credit: 'Ze (Mark) Song 出品 · 我们自己的实现，开源（MIT）'
+    credit: 'Ze (Mark) Song 出品 · 我们自己的实现，源码公开'
   },
   en: {
     title: 'Size Converter', tagline: 'Inch fractions ↔ millimetres, built for the trades',
@@ -43,7 +43,7 @@ const STR = {
     un_m2: 'Square metres', un_cm2: 'Square centimetres', un_ha: 'Hectares', un_ft2: 'Square feet', un_in2: 'Square inches', un_acre: 'Acres',
     un_C: 'Celsius', un_F: 'Fahrenheit', un_K: 'Kelvin',
     jinNote: '500 g', more: 'More projects',
-    credit: 'By Ze (Mark) Song · An original implementation, open source (MIT)'
+    credit: 'By Ze (Mark) Song · An original implementation, source-available'
   }
 };
 
