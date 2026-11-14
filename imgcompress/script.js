@@ -27,7 +27,7 @@ const STR = {
     images: "张图片",
     saved: "节省",
     more: "更多作品",
-    credit: "免费开源（MIT）· Ze (Mark) Song 出品"
+    credit: "源码公开 · 个人使用免费 · Ze (Mark) Song 出品"
   },
   en: {
     title: "Image Compressor",
@@ -54,7 +54,7 @@ const STR = {
     images: "images",
     saved: "saved",
     more: "More projects",
-    credit: "Free & open source (MIT) · by Ze (Mark) Song"
+    credit: "Free & source-available · by Ze (Mark) Song"
   }
 };
 
