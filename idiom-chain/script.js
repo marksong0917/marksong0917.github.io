@@ -3,6 +3,7 @@
 const STR = {
   zh: {
     title: "成语接龙", subtitle: "首尾相连 · 与电脑对接成语",
+    pitch: "词库有 420 条常用成语，每条带拼音和释义 — 边接龙边学，卡住还有提示。",
     score: "接龙长度", best: "最佳纪录", need: "下一字", timeLeft: "剩余时间",
     start: "开始游戏", restart: "重新开始", hint: "提示", giveUp: "认输", timer30: "30 秒限时",
     placeholder: "输入成语…", play: "接龙",
@@ -27,6 +28,7 @@ const STR = {
   },
   en: {
     title: "Idiom Solitaire", subtitle: "Chain Chinese idioms head-to-tail vs the computer",
+    pitch: "The word bank holds 420 common idioms, each with pinyin and a plain meaning — learn as you play, with hints when you get stuck.",
     score: "Chain length", best: "Best", need: "Next char", timeLeft: "Time left",
     start: "Start game", restart: "Restart", hint: "Hint", giveUp: "Give up", timer30: "30s timer",
     placeholder: "Type an idiom…", play: "Play",
