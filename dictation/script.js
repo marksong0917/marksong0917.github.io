@@ -90,7 +90,7 @@ const I18N = {
     noneMissed: "全部答对，没有错题！", again: "再练一轮", replay: "重听",
     correct: "正确", extra: "多写", missing: "漏写",
     itemOf: "第 {a} 题 / 共 {b} 题",
-    more: "更多作品", credit: "声音由本地 Piper 语音模型离线生成 · 开源（MIT）"
+    more: "更多作品", credit: "声音由本地 Piper 语音模型离线生成 · 源码公开 · 个人使用免费"
   },
   en: {
     title: "Dictation", tagline: "Listen, then write it down",
@@ -107,7 +107,7 @@ const I18N = {
     noneMissed: "No misses — everything correct!", again: "Practice again", replay: "Listen",
     correct: "correct", extra: "extra", missing: "missing",
     itemOf: "Item {a} of {b}",
-    more: "More projects", credit: "Voices generated offline with the local Piper TTS model · Open source (MIT)"
+    more: "More projects", credit: "Voices generated offline with the local Piper TTS model · Source-available — free for personal use"
   }
 };
 
