@@ -3,6 +3,7 @@
 const STRINGS = {
   zh: {
     title: "楼梯计算", tag: "步高 · 步宽 · 楼梯梁 — 木工楼梯一次算清，全用毫米",
+    pitch: "不只给尺寸：舒适度检查和按比例示意图先告诉你这楼梯上脚舒不舒服、现场放不放得下 — 落锯之前就心里有数。",
     inputs: "输入", totalRise: "层高（地面到地面，mm）", targetRiser: "目标步高（mm）",
     going: "步宽 / 踏面进深（mm）",
     hint: "改任意一个数字，结果和示意图立刻更新。步数向上取整，实际步高 = 层高 ÷ 步数。",
@@ -18,6 +19,7 @@ const STRINGS = {
   },
   en: {
     title: "Stair Calculator", tag: "Riser, tread, stringer — stairs figured in mm, the carpenter's way",
+    pitch: "Not just numbers: the comfort checks and the to-scale diagram tell you first whether the stair will feel right underfoot and fit the space — before you cut a single board.",
     inputs: "Inputs", totalRise: "Total rise, floor to floor (mm)", targetRiser: "Target riser height (mm)",
     going: "Tread going (mm)",
     hint: "Change any number and the results and diagram update at once. Risers round up; actual riser = total rise ÷ risers.",
