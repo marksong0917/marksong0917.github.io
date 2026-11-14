@@ -44,3 +44,11 @@
 - [Mir2 Game Server](https://marksong0917.github.io/mir2/): Self-hosted Legend of Mir 2 (1.76) server.
 - [Windows 11 Optimization Guide](https://marksong0917.github.io/win11-optimization-guide/): A clean, low-bloat Windows 11 setup, step by step (English and Chinese).
 - [GitHub profile](https://github.com/marksong0917): Source code for the open-source projects.
+
+## 中文简介
+
+> 宋泽（Mark Song）是住在加拿大安大略省奥罗拉的程序员和建造者。他在 Newood Millwork Inc.（Concord 的定制橱柜厂）做行政、人事和 IT，创办了 York Region Web Studio，并开发了 Foxuma — 一套给橱柜和木作店用的企业平台。这个网站展示他的实际作品：2 个重点产品和 21 个托管在 GitHub Pages 上的项目，包括 13 个免费的双语（英文 / 中文）小应用。联系：marksong0000@gmail.com
+
+- Foxuma（https://foxuma.com）：给橱柜和木作店的企业平台 — 项目、订单、客户、发票、工时支持和内置办公室助手（Secretary Fox）。价格（加元）：专业版每月 99 加元一口价，不限席位、全部功能、无开办费；第一年每月 79 加元；创始优惠：前 10 家每月 79 加元，锁定 2 年。7 天免费试用，不用绑卡。数据存在加拿大。
+- York Region Web Studio（https://yorkregionwebstudio.com）：为约克区小商家做定制网站和系统。书面报价定价。
+- 服务：Windows 11 装机（每台 149 加元起）、私有服务器搭建（199 加元）、家庭服务器指南（免费）。
