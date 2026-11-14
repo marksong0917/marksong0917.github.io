@@ -148,7 +148,7 @@ const STR = {
     progress:'进度', accuracy:'正确率', speedUnit:'字母/分钟', time:'用时',
     hint:'提示（看中文意思）', kbdTip:'点击单词卡后开始打字 · 请使用英文输入法',
     next:'下一个', doneTitle:'这一轮完成了', mastered:'已掌握', again:'再来一轮', backToShelf:'换词库',
-    more:'更多作品', credit:'我们自己的原创实现，开源（MIT）', creditBy:'作者',
+    more:'更多作品', credit:'我们自己的原创实现，源码公开', creditBy:'作者',
     start:'开始练习', continue:'继续练习', reset:'重置', notStarted:'未开始', levelDone:'已学完',
     phaseMain:'正式练习', phaseReview:'错词复习', words:'个单词' },
   en:{ title:'TypeWords', tagline:'Type every letter — and remember the word',
@@ -157,7 +157,7 @@ const STR = {
     progress:'Progress', accuracy:'Accuracy', speedUnit:'Letters/min', time:'Time',
     hint:'Hint (show meaning)', kbdTip:'Tap the word card, then type · use an English keyboard layout',
     next:'Next', doneTitle:'Round complete', mastered:'Mastered', again:'Another round', backToShelf:'Change level',
-    more:'More projects', credit:'Our own original implementation, open source (MIT)', creditBy:'By',
+    more:'More projects', credit:'Our own original implementation, source-available', creditBy:'By',
     start:'Start', continue:'Continue', reset:'Reset', notStarted:'Not started', levelDone:'Completed',
     phaseMain:'Practice', phaseReview:'Mistake review', words:'words' }
 };
