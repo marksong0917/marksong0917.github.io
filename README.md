@@ -29,3 +29,5 @@ Option B — project site:
 3. The site goes live at https://marksong0917.github.io/portfolio/
 
 No build step. Plain HTML/CSS/JS.
+
+© 2026 Ze (Mark) Song — source-available under the PolyForm Noncommercial License 1.0.0; see LICENSE.
