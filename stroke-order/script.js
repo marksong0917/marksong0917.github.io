@@ -15,7 +15,7 @@ const STR = {
     nextStroke:'写好了 · 下一笔', redoStroke:'重写这一笔', restartChar:'从头再来',
     practiseNote:'练习是引导临摹，不打分：浅色是这一笔的标准走法，照着描，写完点「下一笔」。',
     doneText:'写完了！对照浅红色的标准字，看看像不像。', nextChar:'下一个字',
-    more:'更多作品', creditData:'笔顺数据', creditData2:'（源自 Make Me a Hanzi，MIT）', credit2:'开源（MIT）',
+    more:'更多作品', creditData:'笔顺数据', creditData2:'（源自 Make Me a Hanzi，MIT）', credit2:'源码公开 · 个人使用免费',
     chars:'{n} 个字', doneN:'已完成 {d}', setMeta:'已完成 {d} / {n}',
     strokes:'共 {n} 笔', strokeOf:'第 {k} 笔 / 共 {n} 笔', finished:'完成啦 · 共 {n} 笔' },
   en: { title:'Stroke Order', tagline:'Learn to write Chinese characters, stroke by stroke',
@@ -25,7 +25,7 @@ const STR = {
     nextStroke:'Done · Next stroke', redoStroke:'Redo stroke', restartChar:'Start over',
     practiseNote:'Practise is guided tracing, not grading: the light stroke shows the standard path — trace over it, then tap Next.',
     doneText:'Finished! Compare your writing with the light-red standard character.', nextChar:'Next character',
-    more:'More projects', creditData:'Stroke data', creditData2:'(from Make Me a Hanzi, MIT)', credit2:'Open source (MIT)',
+    more:'More projects', creditData:'Stroke data', creditData2:'(from Make Me a Hanzi, MIT)', credit2:'Source-available — free for personal use',
     chars:'{n} characters', doneN:'{d} done', setMeta:'{d} of {n} done',
     strokes:'{n} strokes', strokeOf:'Stroke {k} of {n}', finished:'Finished · {n} strokes' }
 };
